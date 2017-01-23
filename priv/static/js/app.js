@@ -44,17 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
+	(function webpackMissingModule() { throw new Error("Cannot find module \"./web/static/css/app.scss\""); }());
 	module.exports = __webpack_require__(2);
 
 
 /***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-
-
-/***/ },
+/* 1 */,
 /* 2 */
 /***/ function(module, exports) {
 
