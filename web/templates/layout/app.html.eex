@@ -14,12 +14,15 @@
   <body>
     <div class="container">
       <header class="header">
+
+        <span class="logo"></span>
+
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
+          <ul class="nav nav-pills right">
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>
         </nav>
-        <span class="logo"></span>
+
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -28,8 +31,44 @@
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
     </div> <!-- /container -->
+
+    <footer role="contentinfo">
+      <div class="site-info">
+        <div class="about-section">
+
+        </div>
+
+        <section class="social-section">
+          <div class="footer-social">
+            <ul class="footer-socils">
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+                </a>
+              </li>
+
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
+                </a>
+              </li>
+
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div class="copyright">
+        @copy 2017 Unafrik
+      </div>
+    </footer>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

@@ -1,6 +1,11 @@
-// @import "../../../node_modules/bourbon/app/assets/stylesheets/bourbon";
 @import "~bourbon/app/assets/stylesheets/bourbon";
 @import "base/grid-settings";
 @import "~bourbon-neat/app/assets/stylesheets/neat";
 @import "vendor/vendor";
 @import "base/base";
+
+footer {
+  width: auto;
+  height: 250px;
+  // background: $dark-grey;
+}
