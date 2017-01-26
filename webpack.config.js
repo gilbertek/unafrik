@@ -31,15 +31,9 @@ var config = module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.scss'],
-    // modulesDirectories: ['node_modules']
     modulesDirectories: [ "node_modules", __dirname + "/web/static/js" ],
   },
 
-  // more information on how our modules are structured, and
-  //
-  // in this case, we'll define our loaders for JavaScript and CSS.
-  // we use regexes to tell Webpack what files require special treatment, and
-  // what patterns to exclude.
   module: {
     loaders: [
       {
@@ -56,18 +50,33 @@ var config = module.exports = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'),
       },
+      {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml'
+      }
     ],
   },
 
-  // what plugins we'll be using - in this case, just our ExtractTextPlugin.
-  // we'll also tell the plugin where the final CSS file should be generated
+  // Tell the ExtractTextPlugin where the final CSS file should be generated
   // (relative to config.output.path)
   plugins: [
     new ExtractTextPlugin('css/app.css'),
   ],
 };
 
-// if running webpack in production mode, minify files with uglifyjs
+// Minify files with uglifyjs in production
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
     new webpack.optimize.DedupePlugin(),

@@ -2,7 +2,7 @@
 
 // Change the grid settings
 $visual-grid: true;
-$visual-grid-color: yellow;
+$visual-grid-color: #eee;
 $visual-grid-index: front;
 $visual-grid-opacity: 0.5;
 
@@ -17,3 +17,7 @@ $max-width: 1200px;
 // Define your breakpoints
 $tablet: new-breakpoint(max-width 768px 8);
 $mobile: new-breakpoint(max-width 480px 4);
+
+$mobile_landscape: new-breakpoint(min-width 415px max-width 767px 6);
+$large: new-breakpoint(min-width 992px 12);
+$x-large: new-breakpoint(min-width 1200px 16);
