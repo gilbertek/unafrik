@@ -1,99 +1,76 @@
 'use strict';
 
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
-var bourbon = require('bourbon').includePaths;
-var neat = require('bourbon-neat').includePaths;
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
 
-var env = process.env.MIX_ENV || 'dev';
-var isProduction = (env === 'prod');
+// helpers for writing path names
+// e.g. join("web/static") => "/full/disk/path/to/hello/web/static"
+function join(dest) { return path.resolve(__dirname, dest); }
 
-var plugins = [
-  new ExtractTextPlugin(
-    'css/app.css', { allChunks: true }
-  ),
-  new CopyWebpackPlugin([{ from: './web/static/assets' }])
-];
+function web(dest) { return join('web/static/' + dest); }
 
-if (isProduction) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin(
-      {minimize: true}
-    )
-  );
-}
+var config = module.exports = {
 
-module.exports = {
   devtool: 'source-map',
 
-  entry: [
-    "./web/static/css/app.scss",
-    "./web/static/js/app.js"
-  ],
+  // our application's entry points - for this example we'll use a single each for
+  // css and js
+  entry: {
+    application: [
+      web('css/app.scss'),
+      web('js/app.js'),
+    ],
+  },
 
+  // where webpack should output our files
   output: {
-    path: "./priv/static",
-    filename: "js/app.js"
+    path: join('priv/static'),
+    filename: 'js/app.js',
   },
 
   resolve: {
-    modulesDirectories: [
-      "node_modules", __dirname + "/web/static/js"
-    ],
-
-    extensions: ['', '.js', '.json', '.scss', '.sass'],
+    extensions: ['', '.js', '.scss'],
+    // modulesDirectories: ['node_modules']
+    modulesDirectories: [ "node_modules", __dirname + "/web/static/js" ],
   },
 
+  // more information on how our modules are structured, and
+  //
+  // in this case, we'll define our loaders for JavaScript and CSS.
+  // we use regexes to tell Webpack what files require special treatment, and
+  // what patterns to exclude.
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel",
+        loader: 'babel',
         query: {
-          presets: ["es2015"]
-        }
-      },
-      //
-      // {
-      //   test: /\.scss$/,
-      //   loaders: ["style", "css", "sass"]
-      // },
-
-      // {
-      //   test: /\.scss$/,
-      //   loaders: ["style", "css?sourceMap", "sass?sourceMap&includePaths[]=" + bourbon + neat[0] + '&includePaths[]=' + neat[1]]
-      // },
-      // {
-      //   test: /\.scss$/,
-      //   loader: "style!css!sass?includePaths[]=" + bourbon
-      // },
-
-      {
-        test: /\.(sass|scss)$/,
-        loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap!import-glob')
-
+          cacheDirectory: true,
+          // plugins: ['transform-decorators-legacy'],
+          presets: ['es2015'],
+        },
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style", "css")
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'),
       },
-
-      // File loader.
-      // Extracts the specified fonts and images into sepearate files and inserts the correct URL into the generated CSS.
-      // For example url("../img/gfxSprite.png") in CSS becomes url(app/img/gfxSprite.da300248bf0a78b746782acb579f2e07.png)
-      {
-        test: /\.(jpg|png|gif|eot|woff2?|ttf|svg)$/,
-        loader: 'file?name=[path][name].[hash].[ext]'
-      },
-    ]
+    ],
   },
 
-        sassLoader: {
-    includePaths: [bourbon, neat]
-        },
-
-  plugins: plugins
+  // what plugins we'll be using - in this case, just our ExtractTextPlugin.
+  // we'll also tell the plugin where the final CSS file should be generated
+  // (relative to config.output.path)
+  plugins: [
+    new ExtractTextPlugin('css/app.css'),
+  ],
 };
+
+// if running webpack in production mode, minify files with uglifyjs
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({ minimize: true })
+  );
+}
