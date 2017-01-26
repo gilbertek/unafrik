@@ -72,8 +72,8 @@ module.exports = {
       // },
 
       {
-       	test: /\.(sass|scss)$/,
-      	loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap!import-glob')
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap!import-glob')
 
       },
       {
@@ -91,9 +91,9 @@ module.exports = {
     ]
   },
 
-	sassLoader: {
+        sassLoader: {
     includePaths: [bourbon, neat]
-	},
+        },
 
   plugins: plugins
 };
