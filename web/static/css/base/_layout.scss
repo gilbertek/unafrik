@@ -12,3 +12,73 @@ html,
 body {
   height: 100%;
 }
+
+// footer
+// ====================================
+footer {
+  background: $dark-grey;
+  display: inline-block;
+  height: 350px;
+  width: auto;
+
+  ul {
+    @include media($large-screen) {
+      float: left;
+      margin-bottom: 0;
+      margin-left: 1em;
+    }
+
+    li {
+      padding-right: 1em;
+
+      @include media($large-screen) {
+        display: inline;
+        text-align: left;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:focus,
+      &:hover {
+        color: transparentize($dark-grey, 0);
+      }
+    }
+  }
+
+  .footer-social {
+    @include media($large-screen) {
+      float: right;
+    }
+
+    li {
+      font-size: .8em;
+    }
+
+    ul.footer-socials {
+      margin: 1em 0 0;
+
+      @include media($large-screen) {
+        float: right;
+        margin-top: 0;
+      }
+
+      li {
+        float: left;
+        line-height: 0;
+        padding-right: .7em;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      img {
+        height: 1.6em;
+        padding: 1px;
+        opacity: .7;
+      }
+    }
+  }
+}
