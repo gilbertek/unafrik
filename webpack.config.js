@@ -1,9 +1,9 @@
 'use strict';
 
-var path = require('path');
+var path    = require('path');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var webpack = require('webpack');
 
 // helpers for writing path names
 // e.g. join("web/static") => "/full/disk/path/to/hello/web/static"
@@ -11,11 +11,8 @@ function join(dest) { return path.resolve(__dirname, dest); }
 function web(dest) { return join('web/static/' + dest); }
 
 var config = module.exports = {
-
   devtool: 'source-map',
 
-  // our application's entry points - for this example we'll use a single each for
-  // css and js
   entry: {
     application: [
       web('css/app.scss'),
