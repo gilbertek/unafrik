@@ -2,6 +2,7 @@
 
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 var webpack = require('webpack');
 
 // helpers for writing path names
@@ -73,6 +74,7 @@ var config = module.exports = {
   // (relative to config.output.path)
   plugins: [
     new ExtractTextPlugin('css/app.css'),
+    new CopyWebpackPlugin([{ from: './web/static/assets' }])
   ],
 };
 
