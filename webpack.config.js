@@ -8,7 +8,6 @@ var webpack = require('webpack');
 // helpers for writing path names
 // e.g. join("web/static") => "/full/disk/path/to/hello/web/static"
 function join(dest) { return path.resolve(__dirname, dest); }
-
 function web(dest) { return join('web/static/' + dest); }
 
 var config = module.exports = {
@@ -49,7 +48,9 @@ var config = module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'),
+        loader: ExtractTextPlugin.extract(
+          'style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
+        ),
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
