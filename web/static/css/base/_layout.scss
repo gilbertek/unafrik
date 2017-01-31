@@ -82,3 +82,29 @@ footer {
     }
   }
 }
+
+.row {
+  @include fill-parent();
+  border: 1px solid yellow;
+}
+
+.container {
+  @include outer-container;
+  border: 1px solid red;
+
+  @include media($small-screen) {
+    @include outer-container(80%);
+  }
+
+  @include media($medium-screen) {
+    @include outer-container(90%);
+  }
+
+  @include media($large-screen) {
+    @include outer-container(85%);
+  }
+
+  @include media($x-large-screen) {
+    @include outer-container(85%);
+  }
+}

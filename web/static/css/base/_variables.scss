@@ -4,10 +4,20 @@ $playfair: 'Playfair Display SC', serif;
 $roboto: 'Roboto', sans-serif;
 $slabo: 'Slabo 27px', serif;
 
+// Define your breakpoints
+// $small-screen: new-breakpoint(min-width em(288));
+// $medium-screen: new-breakpoint(min-width em(562));
+// $large-screen: new-breakpoint(min-width em(600));
+// $xlarge-screen: new-breakpoint(min-width em(876));
+// $small-screen-up: new-breakpoint(min-width em(520));
+// $medium-screen-up: new-breakpoint(min-width em(720));
 
-// Breakpoints
-$medium-screen: 600px;
-$large-screen: 900px;
+// Define your breakpoints
+$small-screen: new-breakpoint(max-width 480px 4);
+$medium-screen: new-breakpoint(max-width 768px 8);
+$large-screen: new-breakpoint(min-width 992px 12);
+$x-large-screen: new-breakpoint(min-width 1200px 16);
+$mobile-landscape-screen: new-breakpoint(min-width 415px max-width 767px 6);
 
 // Typography
 $base-font-family: $open-sans, sans-serif;
