@@ -2,7 +2,7 @@
 // @import "base/grid-settings";
 @import "~bourbon-neat/app/assets/stylesheets/neat";
 @import "../vendor/vendor";
-// @import "base/base";
+@import "base/base";
 
 @import "components/variables"; // colors, fonts etc...
 @import "components/mixins"; // custom mixins

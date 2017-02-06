@@ -71,19 +71,19 @@ jQuery(document).ready(function(){
 	});
 
 	//on desktop - differentiate between a user trying to hover over a dropdown item vs trying to navigate into a submenu's contents
-	sidebar.children('ul').menuAim({
-        activate: function(row) {
-        	$(row).addClass('hover');
-        },
-        deactivate: function(row) {
-        	$(row).removeClass('hover');
-        },
-        exitMenu: function() {
-        	sidebar.find('.hover').removeClass('hover');
-        	return true;
-        },
-        submenuSelector: ".has-children",
-    });
+	// sidebar.children('ul').menuAim({
+ //        activate: function(row) {
+ //        	$(row).addClass('hover');
+ //        },
+ //        deactivate: function(row) {
+ //        	$(row).removeClass('hover');
+ //        },
+ //        exitMenu: function() {
+ //        	sidebar.find('.hover').removeClass('hover');
+ //        	return true;
+ //        },
+ //        submenuSelector: ".has-children",
+ //    });
 
 	function checkMQ() {
 		//check if mobile or desktop device
