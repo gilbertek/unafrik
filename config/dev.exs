@@ -44,5 +44,5 @@ config :unafrik, Unafrik.Repo,
   pool_size: 10
 
 # Bamboo Email
-config :recessiv, Recessiv.Mailer,
+config :unafrik, Unafrik.Mailer,
   adapter: Bamboo.LocalAdapter
