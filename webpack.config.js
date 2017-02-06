@@ -75,10 +75,6 @@ var config = {
       //     'style',
       //     'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
       //   ),
-        // loader: ExtractTextPlugin.extract(
-        //   'style-loader',
-        //   'css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap')
-      // },
       {
         test: /\.hbs$/,
         loader: "handlebars-loader"
@@ -107,7 +103,13 @@ var config = {
   plugins: [
     new ExtractTextPlugin("css/[name].css", { allChunks: true }),
     new CopyWebpackPlugin([{ from: './web/static/assets' }]),
-    new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", u: "umbrellajs"}),
+    new webpack.ProvidePlugin(
+      { $: "jquery",
+        jQuery: "jquery",
+        u: "umbrellajs",
+        modernizr: "modernizr"
+      }
+    ),
   ],
 };
 
