@@ -1,3 +1,5 @@
+import { modernizr } from 'modernizr';
+
 jQuery(document).ready(function(){
 	//cache DOM elements
 	var mainContent = $('.cd-main-content'),
