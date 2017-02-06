@@ -4,3 +4,11 @@
   background-position:center;
   background-repeat:no-repeat;
 }
+
+// Usage: @include easeOutAll(0.5s);
+@mixin easeOutAll($time) {
+  -webkit-transition: all $time ease-out;
+  -moz-transition: all $time ease-out;
+  -o-transition: all $time ease-out;
+  transition: all $time ease-out;
+}
