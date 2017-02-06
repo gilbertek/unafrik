@@ -53,15 +53,32 @@ var config = {
         },
       },
       {
-        test: /\.(scss|css|sass)$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
-        ),
+        test   : /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader'
+        ]
+      },
+      {
+        test   : /\.(scss|sass)$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader?sourceMap'
+        ]
+      },
+      // {
+      //   test: /\.(scss|sass)$/,
+      //   loader: ExtractTextPlugin.extract(
+      //     'style',
+      //     'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
+      //   ),
         // loader: ExtractTextPlugin.extract(
         //   'style-loader',
         //   'css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap')
-      },
+      // },
       {
         test: /\.hbs$/,
         loader: "handlebars-loader"
@@ -88,9 +105,7 @@ var config = {
   // Tell the ExtractTextPlugin where the final CSS file should be generated
   // (relative to config.output.path)
   plugins: [
-    new ExtractTextPlugin("css/[name].css", {
-      allChunks: true
-    }),
+    new ExtractTextPlugin("css/[name].css", { allChunks: true }),
     new CopyWebpackPlugin([{ from: './web/static/assets' }]),
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", u: "umbrellajs"}),
   ],
