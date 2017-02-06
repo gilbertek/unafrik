@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin::Unafrik</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/admin.css") %>">
+  </head>
+
+  <body>
+    <header class="cd-main-header">
+  		<a href="#0" class="cd-logo"><img src="images/cd-logo.svg" alt="Logo"></a>
+
+  		<div class="cd-search is-hidden">
+  			<form action="#0">
+  				<input type="search" placeholder="Search...">
+  			</form>
+  		</div> <!-- cd-search -->
+
+  		<a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+
+  		<nav class="cd-nav">
+  			<ul class="cd-top-nav">
+  				<li><a href="#0">Tour</a></li>
+  				<li><a href="#0">Support</a></li>
+  				<li class="has-children account">
+  					<a href="#0">
+  						<img src="images/cd-avatar.png" alt="avatar">
+  						Account
+  					</a>
+
+  					<ul>
+
+  						<li><a href="#0">My Account</a></li>
+  						<li><a href="#0">Edit Account</a></li>
+  						<li><a href="#0">Logout</a></li>
+  					</ul>
+  				</li>
+  			</ul>
+  		</nav>
+  	</header> <!-- .cd-main-header -->
+
+    <main class="cd-main-content">
+  		<nav class="cd-side-nav">
+  			<ul>
+  				<li class="cd-label">Main</li>
+        </ul>
+      </nav>
+    </main>
+
+    <div class="content-wrapper">
+			<h1>Responsive Sidebar Navigation</h1>
+
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+    </div> <!-- .content-wrapper -->
+
+    <footer role="contentinfo">
+      <div class="site-info">
+        <div class="about-section">
+
+        </div>
+
+      </div>
+      <div class="copyright">
+        @copy 2017 Unafrik
+      </div>
+    </footer>
+
+    <script src="<%= static_path(@conn, "/js/admin.js") %>"></script>
+  </body>
+</html>
