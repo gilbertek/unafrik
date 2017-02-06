@@ -1,4 +1,4 @@
-<h2>Listing pages</h2>
+<h2>Admin Dashboard</h2>
 
 <table class="table">
   <thead>
@@ -8,17 +8,4 @@
     </tr>
   </thead>
   <tbody>
-<%= for page <- @pages do %>
-    <tr>
 
-      <td class="text-right">
-        <%= link "Show", to: page_path(@conn, :show, page), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: page_path(@conn, :edit, page), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: page_path(@conn, :delete, page), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New page", to: page_path(@conn, :new) %>

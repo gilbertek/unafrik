@@ -13,8 +13,18 @@ defmodule Unafrik.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug :put_layout, {Unafrik.LayoutView, :admin}
+  end
+
   scope "/", Unafrik do
     pipe_through :browser # Use the default browser stack
+
+    get "/", PageController, :index
+  end
+
+  scope "/admin", Unafrik.Admin do
+    pipe_through [:browser, :admin]
 
     get "/", PageController, :index
   end
