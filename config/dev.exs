@@ -42,3 +42,7 @@ config :unafrik, Unafrik.Repo,
   database: "unafrik_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Bamboo Email
+config :recessiv, Recessiv.Mailer,
+  adapter: Bamboo.LocalAdapter

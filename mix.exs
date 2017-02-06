@@ -18,8 +18,19 @@ defmodule Unafrik.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Unafrik, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+     applications: [:phoenix,
+                    :phoenix_pubsub,
+                    :phoenix_html,
+                    :cowboy,
+                    :logger,
+                    :gettext,
+                    :phoenix_ecto,
+                    :postgrex,
+                    :comeonin,
+                    :guardian,
+                    :bamboo,
+                    :bamboo_smtp,
+                    :slugger]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,7 +48,13 @@ defmodule Unafrik.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:comeonin, "~> 3.0.1"},
+     {:guardian, "~> 0.14.2"},
+     {:bamboo, "~> 0.7.0"},
+     {:bamboo_smtp, "~> 1.2.1"},
+     {:slugger, "~> 0.1.0"},
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

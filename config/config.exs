@@ -17,6 +17,18 @@ config :unafrik, Unafrik.Endpoint,
   pubsub: [name: Unafrik.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],   # optional
+  verify_module: Guardian.JWT, # optional
+  issuer: "Unafrik.#{Mix.env}",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  verify_issuer: true,
+  serializer: Unafrik.GuardianSerializer,
+  secret_key: to_string(Mix.env) <> "SuPerseCret_aBraCadabrA"
+
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

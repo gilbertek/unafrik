@@ -1,29 +1,36 @@
 'use strict';
 
-var path    = require('path');
+var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require("copy-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+var env = process.env.MIX_ENV || 'dev';
+var isProduction = (env === 'prod')
 
 // helpers for writing path names
 // e.g. join("web/static") => "/full/disk/path/to/hello/web/static"
 function join(dest) { return path.resolve(__dirname, dest); }
+
 function web(dest) { return join('web/static/' + dest); }
 
-var config = module.exports = {
+var config = {
+
   devtool: 'source-map',
 
+  // our application's entry points - for this example we'll use a single each for
+  // css and js
   entry: {
-    application: [
-      web('css/app.scss'),
-      web('js/app.js'),
-    ],
+    app: [ web('css/app/app.scss'), web('js/app/app.js')],
+    admin: [web('css/admin/admin.scss'), web('js/admin/admin.js')],
   },
 
   // where webpack should output our files
   output: {
     path: join('priv/static'),
-    filename: 'js/app.js',
+    filename: 'js/[name].js',
+    chunkFilename: "js/[id].js"
   },
 
   resolve: {
@@ -36,6 +43,8 @@ var config = module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        // Do not use ES6 compiler in vendor code
+        ignore: [/web\/static\/vendor/],
         loader: 'babel',
         query: {
           cacheDirectory: true,
@@ -44,26 +53,25 @@ var config = module.exports = {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css|sass)$/,
         loader: ExtractTextPlugin.extract(
           'style', 'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
         ),
       },
       {
-        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
+        test: /\.hbs$/,
+        loader: "handlebars-loader"
       },
       {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream'
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: "file-loader"
       },
       {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file'
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+        loader: "file-loader",
+        query: {
+          name: "[name].[ext]?[hash]"
+        }
       }
     ],
   },
@@ -71,15 +79,25 @@ var config = module.exports = {
   // Tell the ExtractTextPlugin where the final CSS file should be generated
   // (relative to config.output.path)
   plugins: [
-    new ExtractTextPlugin('css/app.css'),
-    new CopyWebpackPlugin([{ from: './web/static/assets' }])
+     new ExtractTextPlugin("css/[name].css"),
+    // new ExtractTextPlugin('css/app.css' , { allChunks: true }),
+    // new ExtractTextPlugin('css/dashboard.css' , { allChunks: true }),
+    // new ExtractTextPlugin('css/admin.css' , { allChunks: true }),
+    new CopyWebpackPlugin([{ from: './web/static/assets' }]),
+    new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", u: "umbrellajs"}),
   ],
 };
 
 // Minify files with uglifyjs in production
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   config.plugins.push(
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ minimize: true })
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {warnings: false},
+      output: {comments: false}
+    }),
+    new OptimizeCssAssetsPlugin()
   );
 }
+
+module.exports = config;

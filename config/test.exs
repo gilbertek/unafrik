@@ -17,3 +17,6 @@ config :unafrik, Unafrik.Repo,
   database: "unafrik_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :recessiv, Recessiv.Mailer,
+  adapter: Bamboo.TestAdapter
