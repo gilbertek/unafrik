@@ -3,7 +3,7 @@ defmodule Unafrik.SubscriptionTest do
 
   alias Unafrik.Subscription
 
-  @valid_attrs %{disabled_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}, email: "some content", name: "some content", source: "some content", status: 42}
+  @valid_attrs %{disabled_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}, email: "some@content.com", name: "some content", source: "some content", status: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

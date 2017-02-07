@@ -20,3 +20,6 @@ config :unafrik, Unafrik.Repo,
 
 config :unafrik, Unafrik.Mailer,
   adapter: Bamboo.TestAdapter
+
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

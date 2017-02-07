@@ -38,13 +38,6 @@ defmodule Recessiv.SharedView do
   defp rel_from_now({day, {_, _, _}}),
     do: "#{day} days ago"
 
-  def markdown_with_users(markdown) do
-    markdown
-    |> MentionFinder.find_users
-    |> bold_usernames(markdown)
-    |> Constable.Markdown.to_html
-  end
-
   def on_first_page?(page) do
     page.page_number == 1
   end

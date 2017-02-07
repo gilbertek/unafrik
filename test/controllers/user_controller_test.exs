@@ -63,4 +63,13 @@ defmodule Unafrik.UserControllerTest do
     assert redirected_to(conn) == user_path(conn, :index)
     refute Repo.get(User, user.id)
   end
+
+  # test "Users should have unique emails", %{conn: conn} do
+  #   post conn, registration_path(conn, :create), user: @valid_attrs
+  #   conn = post conn, registration_path(conn, :create), user: @valid_attrs
+  #   errors = json_response(conn, 422)["errors"]
+  #   assert errors != %{}
+  #   assert Map.has_key?(errors, "email")
+  #   assert Map.get(errors, "email") == ["has already been taken"]
+  # end
 end

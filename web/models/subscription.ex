@@ -19,7 +19,7 @@ defmodule Unafrik.Subscription do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_length(:name, min: 1)
     |> validate_format(:name, ~r/\S+/)

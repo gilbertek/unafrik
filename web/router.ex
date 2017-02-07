@@ -21,7 +21,10 @@ defmodule Unafrik.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/users", UserController
+    resources "/users", UserController, only: [:show, :new, :create]
+    resources "/sessions", SessionController, only: [:new, :create,
+                                                   :delete]
+
     resources "/subscriptions", SubscriptionController, only: [:new, :create]
   end
 

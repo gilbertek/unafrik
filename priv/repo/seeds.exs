@@ -16,3 +16,14 @@
 
 # mix phoenix.gen.html User users email:string password_hash:string \
 #   status:integer name:string
+
+admin_params = %{name: "Admin User",
+                 email: "admin@test.com",
+                 password: "supersecret",
+                 # is_admin: true
+               }
+unless Repo.get_by(User, email: admin_params[:email]) do
+  %User{}
+  |> User.registration_changeset(admin_params)
+  |> Repo.insert!
+end
