@@ -25,6 +25,11 @@
 # mix phoenix.gen.model Request requests description:string \
 #   type:integer status:integer start_at:datetime \
 #   end_at:datetime notes:text total_hrs:integer
+#
+# def status_options do
+#   DefaultStatusEnum.__enum_map__()
+#   |> Enum.map(fn({k, _v}) -> {String.capitalize(Atom.to_string(k)), k} end)
+# end
 
 request_params = %{
   description: "Time Off Request",

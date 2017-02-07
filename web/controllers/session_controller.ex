@@ -1,14 +1,17 @@
 defmodule Unafrik.SessionController do
   use Unafrik.Web, :controller
 
-  alias Unafrik.Session
+  alias Unafrik.Authenticator
+  plug :scrub_params, "session" when action in ~w(create)a
 
   def new(conn, _params) do
     render(conn, "new.html")
   end
 
-  def create(conn, %{"session" => session_params}) do
+  def create(conn, %{"session" => %{"email" => email,
+                                  "password" => password}}) do
 
+    Authenticator.login(email, password)
   end
 
   def delete(conn, %{"id" => id}) do
