@@ -2,7 +2,7 @@ defmodule Unafrik.SubscriptionControllerTest do
   use Unafrik.ConnCase
 
   alias Unafrik.Subscription
-  @valid_attrs %{email: "some content", name: "some content", source: "some content"}
+  @valid_attrs %{disabled_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}, email: "some content", name: "some content", source: "some content", status: 42}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do

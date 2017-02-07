@@ -6,6 +6,8 @@ defmodule Unafrik.Repo.Migrations.CreateSubscription do
       add :name, :string
       add :email, :string
       add :source, :string
+      add :status, :integer
+      add :disabled_at, :utc_datetime
 
       timestamps()
     end

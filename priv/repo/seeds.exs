@@ -10,4 +10,6 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-# mix phoenix.gen.html Subscription subscriptions name:string email:string source:string
+# mix phoenix.gen.html Subscription subscriptions \
+#   name:string email:string source:string \
+#   status:integer disabled_at:datetime

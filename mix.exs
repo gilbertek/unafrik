@@ -54,6 +54,7 @@ defmodule Unafrik.Mixfile do
      {:bamboo, "~> 0.7.0"},
      {:bamboo_smtp, "~> 1.2.1"},
      {:slugger, "~> 0.1.0"},
+     {:ecto_enum, "~> 1.0.1"},
     ]
   end
 
