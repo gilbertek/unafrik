@@ -19,6 +19,10 @@ config :unafrik, Unafrik.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+
+config :unafrik, Unafrik.Mailer,
+  adapter: Bamboo.SMTPAdapter
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
