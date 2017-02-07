@@ -13,6 +13,17 @@ defmodule Unafrik.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :with_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+    plug Unafrik.Plug.CurrentUser
+  end
+
+  pipeline :with_session do
+    plug Guardian.Plug.EnsureAuthenticated,
+       handler: Unafrik.GuardianErrorHandler
+  end
+
   pipeline :admin do
     plug :put_layout, {Unafrik.LayoutView, :admin}
   end
@@ -29,7 +40,7 @@ defmodule Unafrik.Router do
   end
 
   scope "/admin", Unafrik.Admin do
-    pipe_through [:browser, :admin]
+    pipe_through [:browser, :admin, :with_session]
 
     get "/", PageController, :index
   end

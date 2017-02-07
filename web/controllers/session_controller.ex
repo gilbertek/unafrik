@@ -15,14 +15,10 @@ defmodule Unafrik.SessionController do
   end
 
   def delete(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(session)
-
     conn
-    |> put_flash(:info, "Session deleted successfully.")
-    |> redirect(to: session_path(conn, :index))
+    |> Guardian.Plug.sign_out
+    |> logout
+    |> put_flash(:info, "See you later!")
+    |> redirect(to: page_path(conn, :index))
   end
 end
