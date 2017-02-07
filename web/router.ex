@@ -19,7 +19,7 @@ defmodule Unafrik.Router do
     plug Unafrik.Plug.CurrentUser
   end
 
-  pipeline :with_session do
+  pipeline :required_login do
     plug Guardian.Plug.EnsureAuthenticated,
        handler: Unafrik.GuardianErrorHandler
   end
@@ -45,7 +45,7 @@ defmodule Unafrik.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
+  # Other scopes may usce custom stacks.
   # scope "/api", Unafrik do
   #   pipe_through :api
   # end
