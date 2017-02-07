@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 @import "~bourbon/app/assets/stylesheets/bourbon";
 // @import "base/grid-settings";
 @import "~bourbon-neat/app/assets/stylesheets/neat";
@@ -8,4 +10,3 @@
 @import "components/mixins"; // custom mixins
 @import "components/layout"; // responsive grid and media queries
 @import "components/default"; // responsive grid and media queries
-
