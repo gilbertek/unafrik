@@ -3,14 +3,8 @@ defmodule Unafrik.SessionController do
 
   alias Unafrik.Session
 
-  def index(conn, _params) do
-    sessions = Repo.all(Session)
-    render(conn, "index.html", sessions: sessions)
-  end
-
   def new(conn, _params) do
-    changeset = Session.changeset(%Session{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html")
   end
 
   def create(conn, %{"session" => session_params}) do
@@ -26,29 +20,10 @@ defmodule Unafrik.SessionController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-    render(conn, "show.html", session: session)
-  end
-
   def edit(conn, %{"id" => id}) do
     session = Repo.get!(Session, id)
     changeset = Session.changeset(session)
     render(conn, "edit.html", session: session, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "session" => session_params}) do
-    session = Repo.get!(Session, id)
-    changeset = Session.changeset(session, session_params)
-
-    case Repo.update(changeset) do
-      {:ok, session} ->
-        conn
-        |> put_flash(:info, "Session updated successfully.")
-        |> redirect(to: session_path(conn, :show, session))
-      {:error, changeset} ->
-        render(conn, "edit.html", session: session, changeset: changeset)
-    end
   end
 
   def delete(conn, %{"id" => id}) do

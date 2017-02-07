@@ -17,7 +17,6 @@
 # mix phoenix.gen.html User users email:string password_hash:string \
 #   status:integer name:string
 
-
 # mix phoenix.gen.html Session sessions email:string password:string --no-model
 
 
