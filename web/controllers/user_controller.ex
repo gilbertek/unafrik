@@ -3,6 +3,8 @@ defmodule Unafrik.UserController do
 
   alias Unafrik.User
 
+  plug :scrub_params, "user" when action in [:create]
+
   def index(conn, _params) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)

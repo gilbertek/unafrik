@@ -17,10 +17,18 @@
 # mix phoenix.gen.html User users email:string password_hash:string \
 #   status:integer name:string
 
+
+# mix phoenix.gen.html Session sessions email:string password:string --no-model
+
+
+user_params = %{name: "Simple User",
+                 email: "user@test.com",
+                 password: "supersecret"
+               }
+
 admin_params = %{name: "Admin User",
                  email: "admin@test.com",
-                 password: "supersecret",
-                 # is_admin: true
+                 password: "supersecret"
                }
 unless Repo.get_by(User, email: admin_params[:email]) do
   %User{}

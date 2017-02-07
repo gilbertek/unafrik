@@ -34,9 +34,9 @@ defmodule Unafrik.User do
     |> validate_length(:password, min: 6, max: 100)
   end
 
-  def update_changeset(user, attributes) do
+  def update_changeset(user, params) do
     user
-    |> cast(attributes, @required_fields)
+    |> cast(params, @required_fields)
     |> validate_required([:name, :email])
     |> unique_constraint(:email)
   end
