@@ -10,5 +10,6 @@ defmodule Unafrik.Repo.Migrations.CreateSubscription do
       timestamps()
     end
 
+    create unique_index(:subscriptions, [:email])
   end
 end
