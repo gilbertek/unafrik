@@ -19,6 +19,8 @@
 
 # mix phoenix.gen.html Session sessions email:string password:string --no-model
 
+# mix phoenix.gen.model Role roles name:string slug:string\
+#   status:integer disabled_at:datetime
 
 user_params = %{name: "Simple User",
                  email: "user@test.com",

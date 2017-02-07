@@ -8,22 +8,7 @@ defmodule Unafrik.SessionController do
   end
 
   def create(conn, %{"session" => session_params}) do
-    changeset = Session.changeset(%Session{}, session_params)
 
-    case Repo.insert(changeset) do
-      {:ok, _session} ->
-        conn
-        |> put_flash(:info, "Session created successfully.")
-        |> redirect(to: session_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
-  end
-
-  def edit(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-    changeset = Session.changeset(session)
-    render(conn, "edit.html", session: session, changeset: changeset)
   end
 
   def delete(conn, %{"id" => id}) do
