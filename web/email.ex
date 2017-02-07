@@ -18,7 +18,7 @@ defmodule Unafrik.Email do
   end
 end
 
-defimpl Bamboo.Formatter, for: Unafrik.user do
+defimpl Bamboo.Formatter, for: Unafrik.User do
   def format_email_address(user, _opts) do
     {user.name, user.email}
   end

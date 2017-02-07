@@ -1,0 +1,10 @@
+<tr>
+  <td class="content-block">
+    You can sign in by clicking the link below.
+  </td>
+</tr>
+<tr>
+  <td class="content-block" itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
+    <%=# link "Sign In", to: Unafrik.AuthView.auth_url(Unafrik.Endpoint, @user), class: "btn-primary", itemprop: "url" %>
+  </td>
+</tr>

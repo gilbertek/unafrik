@@ -13,3 +13,6 @@
 # mix phoenix.gen.html Subscription subscriptions \
 #   name:string email:string source:string \
 #   status:integer disabled_at:datetime
+
+# mix phoenix.gen.html User users email:string password_hash:string \
+#   status:integer name:string

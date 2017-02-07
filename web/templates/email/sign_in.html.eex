@@ -1,0 +1,1 @@
+Click here to sign in: <%=# Unafrik.AuthView.auth_url(Changelog.Endpoint, @user) %>
