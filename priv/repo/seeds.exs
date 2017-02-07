@@ -22,6 +22,19 @@
 # mix phoenix.gen.model Role roles name:string slug:string\
 #   status:integer disabled_at:datetime
 
+# mix phoenix.gen.model Request requests description:string \
+#   type:integer status:integer start_at:datetime \
+#   end_at:datetime notes:text total_hrs:integer
+
+request_params = %{
+  description: "Time Off Request",
+  type: 0,
+  status: "pending"
+  start_at: %{day: 17, hour: 9, min: 0, month: 4, sec: 0, year: 2017},
+  end_at: %{day: 17, hour: 17, min: 0, month: 4, sec: 0, year: 2017}
+  total_hrs: 8
+}
+
 user_params = %{name: "Simple User",
                  email: "user@test.com",
                  password: "supersecret"
