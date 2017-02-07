@@ -12,7 +12,6 @@ var isProduction = (env === 'prod')
 // helpers for writing path names
 // e.g. join("web/static") => "/full/disk/path/to/hello/web/static"
 function join(dest) { return path.resolve(__dirname, dest); }
-
 function web(dest) { return join('web/static/' + dest); }
 
 var config = {
@@ -23,7 +22,7 @@ var config = {
   // css and js
   entry: {
     app: [ web('css/app/app.scss'), web('js/app/app.js')],
-    admin: [web('css/admin/admin.scss'), web('js/admin/admin.js')],
+    admin: [web('css/admin/admin.scss'), web('js/admin/admin.js')]
   },
 
   // where webpack should output our files
