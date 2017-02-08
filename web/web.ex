@@ -52,6 +52,8 @@ defmodule Unafrik.Web do
       import Unafrik.Router.Helpers
       import Unafrik.ErrorHelpers
       import Unafrik.Gettext
+
+      import Unafrik.ControllerHelper
     end
   end
 

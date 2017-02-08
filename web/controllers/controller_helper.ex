@@ -1,4 +1,4 @@
-defmodule Recessiv.ControllerHelper do
+defmodule Unafrik.ControllerHelper do
   def unauthorized(conn) do
     Plug.Conn.send_resp(conn, 401, "")
   end
