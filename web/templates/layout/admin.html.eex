@@ -42,8 +42,13 @@
               </li>
 
               <li>
-                <%= link "Logout 2", to: session_path(@conn, :delete, @current_user), method: "delete" %>
+                <%= link "Logout 2", to: admin_session_path(@conn, :delete, @current_user), method: "delete" %>
               </li>
+
+              <li>
+                <%= link "Logout 3", to: admin_session_path(Unafrik.Endpoint, :delete, @current_user), method: "delete" %>
+              </li>
+
   					</ul>
   				</li>
   			</ul>

@@ -1,65 +1,40 @@
 defmodule Unafrik.Admin.SessionController do
   use Unafrik.Web, :controller
 
-  alias Unafrik.Admin.Session
+  require IEx
 
-  def index(conn, _params) do
-    sessions = Repo.all(Session)
-    render(conn, "index.html", sessions: sessions)
-  end
+  alias Unafrik.User
+  plug :scrub_params, "session" when action in ~w(create)a
 
   def new(conn, _params) do
-    changeset = Session.changeset(%Session{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html")
   end
 
-  def create(conn, %{"session" => session_params}) do
-    changeset = Session.changeset(%Session{}, session_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _session} ->
-        conn
-        |> put_flash(:info, "Session created successfully.")
-        |> redirect(to: session_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
-  end
-
-  def show(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-    render(conn, "show.html", session: session)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-    changeset = Session.changeset(session)
-    render(conn, "edit.html", session: session, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "session" => session_params}) do
-    session = Repo.get!(Session, id)
-    changeset = Session.changeset(session, session_params)
-
-    case Repo.update(changeset) do
-      {:ok, session} ->
-        conn
-        |> put_flash(:info, "Session updated successfully.")
-        |> redirect(to: session_path(conn, :show, session))
-      {:error, changeset} ->
-        render(conn, "edit.html", session: session, changeset: changeset)
-    end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    session = Repo.get!(Session, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(session)
-
+  def create(conn, conn, %{"session" => %{"email" => "", "password" => ""}}) do
     conn
-    |> put_flash(:info, "Session deleted successfully.")
-    |> redirect(to: session_path(conn, :index))
+    |> put_flash(:error, "Please fill in an email address and password")
+    |> render("new.html")
+  end
+
+  def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
+    case Authenticator.admin_login(email,  password) do
+      { :ok, user } ->
+        conn
+        |> Guardian.Plug.sign_in(user)
+        |> put_flash(:info, "You are now logged in")
+        |> redirect(to: page_path(conn, :index))
+      :error ->
+        conn
+        |> put_flash(:error, "Wrong email or password")
+        |> render("new.html")
+    end
+  end
+
+  def delete(conn, _params, _current_user) do
+    IEx.pry
+    conn
+    |> Guardian.Plug.sign_out(:admin)
+    |> put_flash(:info, "admin signed out")
+    |> redirect(to: "/")
   end
 end

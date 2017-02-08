@@ -39,8 +39,12 @@ defmodule Unafrik.Router do
     resources "/subscriptions", SubscriptionController, only: [:new, :create]
   end
 
-  scope "/admin", Unafrik.Admin do
+  scope "/admin", Unafrik.Admin, as: :admin do
     pipe_through [:browser, :admin, :with_session, :required_login]
+
+    resources "/sessions", SessionController, only: [:new, :create,
+                                                   :delete]
+    resources "/users", UserController
 
     get "/", PageController, :index
   end
