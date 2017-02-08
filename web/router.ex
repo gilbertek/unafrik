@@ -29,7 +29,7 @@ defmodule Unafrik.Router do
   end
 
   scope "/", Unafrik do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :with_session] # Use the default browser stack
 
     get "/", PageController, :index
     resources "/users", UserController, only: [:show, :new, :create]
@@ -40,7 +40,7 @@ defmodule Unafrik.Router do
   end
 
   scope "/admin", Unafrik.Admin do
-    pipe_through [:browser, :admin, :with_session]
+    pipe_through [:browser, :admin, :with_session, :required_login]
 
     get "/", PageController, :index
   end
