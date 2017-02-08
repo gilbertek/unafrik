@@ -1,4 +1,4 @@
-defmodule Unafrik.CurrentUser do
+defmodule Unafrik.Plug.CurrentUser do
   import Plug.Conn
   import Guardian.Plug
 

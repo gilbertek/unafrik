@@ -26,10 +26,62 @@
 #   type:integer status:integer start_at:datetime \
 #   end_at:datetime notes:text total_hrs:integer
 #
+
+# mix phoenix.gen.model Organization organizations \
+#   name:string active:boolean description:string slug:string \
+#   website:string status:integer last_active_at:datetime
+
+# mix phoenix.gen.model Membership memberships \
+#   organization_id:references:organizations \
+#   user_id:references:users
+
+# mix phoenix.gen.model Role roles name:string slug:string active:boolean
+
+# mix phoenix.gen.model UserRole user_roles \
+#   user_id:references:users \
+#   role_id:references:roles
+
+
 # def status_options do
 #   DefaultStatusEnum.__enum_map__()
 #   |> Enum.map(fn({k, _v}) -> {String.capitalize(Atom.to_string(k)), k} end)
 # end
+
+# https://gist.github.com/637e1a76f482620361d964784a58fa92
+
+alias Unafrik.Repo
+alias Unafrik.{Organization, User, Account, Registration}
+
+org_changeset = Organization.changeset(%Organization{}, %{name: "Unafrik"})
+{:ok, org} = Repo.insert(org_changeset)
+
+user_changeset = User.changeset(%User{}, %{
+  first_name: "John",
+  last_name: "Doe",
+  email: "admin@recessiv.com",
+  organization_name: "Nolo",
+  phone_number: "212 770-7777",
+  password: Comeonin.Bcrypt.hashpwsalt("admin"),
+  is_admin: true,
+})
+{:ok, user} = Repo.insert(user_changeset)
+
+membership_changeset = Membership.changeset(%Membership{}, %{organization_id: org.id, user_id: user.id})
+Repo.insert(membership_changeset)
+
+params = %{
+  first_name: "John",
+  last_name: "Doe",
+  email: "member@recessiv.com",
+  organization_name: "Nolo Group",
+  phone_number: "212 770-7777",
+  password: "admin",
+  is_admin: true,
+}
+
+changeset = Registration.changeset(%Registration{}, params)
+Repo.transaction(Registration.to_multi(changeset))
+
 
 request_params = %{
   description: "Time Off Request",
