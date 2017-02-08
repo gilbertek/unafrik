@@ -6,7 +6,13 @@ defmodule Unafrik.Admin.SessionController do
   alias Unafrik.User
   plug :scrub_params, "session" when action in ~w(create)a
 
-  def new(conn, _params) do
+
+  # def action(conn, _) do
+  #   apply(__MODULE__, action_name(conn),
+  #         [conn, conn.params, conn.assigns.current_user])
+  # end
+
+  def new(conn, _params, _current_user) do
     render(conn, "new.html")
   end
 
@@ -16,7 +22,7 @@ defmodule Unafrik.Admin.SessionController do
     |> render("new.html")
   end
 
-  def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
+  def create(conn, %{"session" => %{"email" => email, "password" => password}}, _current_user) do
     case Authenticator.admin_login(email,  password) do
       { :ok, user } ->
         conn

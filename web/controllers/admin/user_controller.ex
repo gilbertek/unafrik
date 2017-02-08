@@ -1,9 +1,14 @@
 defmodule Unafrik.Admin.UserController do
   use Unafrik.Web, :controller
 
-  alias Unafrik.Admin.User
+  alias Unafrik.User
 
-  def index(conn, _params) do
+  def action(conn, _) do
+    apply(__MODULE__, action_name(conn),
+          [conn, conn.params, conn.assigns.current_user])
+  end
+
+  def index(conn, _params, current_user) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)
   end
@@ -13,7 +18,7 @@ defmodule Unafrik.Admin.UserController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"user" => user_params}) do
+  def create(conn, %{"user" => user_params}, _current_user) do
     changeset = User.changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
@@ -26,18 +31,18 @@ defmodule Unafrik.Admin.UserController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, current_user) do
     user = Repo.get!(User, id)
     render(conn, "show.html", user: user)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}, current_user) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user)
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def update(conn, %{"id" => id, "user" => user_params}, _current_user) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user, user_params)
 
@@ -51,7 +56,7 @@ defmodule Unafrik.Admin.UserController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}, _current_user) do
     user = Repo.get!(User, id)
 
     # Here we use delete! (with a bang) because we expect

@@ -35,9 +35,15 @@
 
   					<ul>
 
-  						<li><a href="#0">My Account</a></li>
-  						<li><a href="#0">Edit Account</a></li>
   						<li>
+                <%= link "My Account", to: admin_user_path(@conn, :index) %>
+              </li>
+
+  						<li>
+                <%= link "Edit Account", to: admin_user_path(@conn, :edit, @current_user) %>
+              </li>
+
+              <li>
                 <%= link "Logout", to: session_path(Unafrik.Endpoint, :delete, @current_user), method: "delete" %>
               </li>
 
@@ -112,9 +118,15 @@
             <a href="#0">Users</a>
 
             <ul>
-              <li><a href="#0">All Users</a></li>
-              <li><a href="#0">Edit User</a></li>
-              <li><a href="#0">Add User</a></li>
+              <li>
+                <%= link "All Users", to: admin_user_path(@conn, :index) %>
+              </li>
+              <li>
+                <%= link "Edit User", to: admin_user_path(@conn, :edit, @current_user) %>
+              </li>
+              <li>
+                <%= link "New User", to: admin_user_path(@conn, :new) %>
+              </li>
             </ul>
           </li>
         </ul>
