@@ -94,6 +94,57 @@ if(TARGET === 'start') {
       ]
     }),
 
+    // Admin Style Entry Point
+    merge(common, {
+      entry: [
+        "./web/static/css/admin/admin.scss",
+        "./web/static/js/admin/admin.js"
+      ],
+      output: {
+        path: "./priv/static",
+        filename: "js/admin.js"
+      },
+      resolve: {
+        modules: [
+          "node_modules",
+          __dirname + "/web/static/app"
+        ]
+      },
+      plugins: [
+        new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
+        new ExtractTextPlugin("css/admin.css")
+      ]
+    }),
+
+    // Admin Style with semantic-ui-css Entry Point
+    merge(common, {
+    entry: [
+      // "./web/static/semantic/semantic.css",
+      // "./web/static/semantic/semantic.js",
+      "./web/static/css/admin-semantic/calendar.css",
+      "./web/static/js/admin-semantic/calendar.js",
+      "./web/static/css/admin-semantic/admin_semantic.scss",
+      "./web/static/js/admin-semantic/admin_semantic.js"
+    ],
+    output: {
+      path: "./priv/static",
+      filename: "js/admin_semantic.js"
+    },
+    resolve: {
+      // modules: [
+      //   "node_modules",
+      //   __dirname + "/web/static/admin-semantic"
+      // ],
+      alias: {
+        'semantic-ui': path.join(__dirname, 'node_modules', 'semantic-ui-css', 'semantic.js')
+      }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
+      new ExtractTextPlugin("css/admin_semantic.css")
+    ]
+  }),
+
     // Emails Style Entry Point
     merge(common, {
       entry: "./web/static/css/email/email.scss",
