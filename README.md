@@ -17,3 +17,15 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+```
+npm cache clean
+
+npm uninstall webpack -g
+npm uninstall webpack --save-dev
+npm install webpack@^2.2 -g
+npm install webpack@^2.2 --save-dev
+npm uninstall extract-text-webpack-plugin --save-dev
+npm install extract-text-webpack-plugin@^2.0.0-rc.3 --save-dev
+npm install --save-dev css-loader
