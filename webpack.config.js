@@ -121,8 +121,8 @@ if(TARGET === 'start') {
     entry: [
       // "./web/static/semantic/semantic.css",
       // "./web/static/semantic/semantic.js",
-      "./web/static/css/admin-semantic/calendar.css",
-      "./web/static/js/admin-semantic/calendar.js",
+      // "./web/static/css/admin-semantic/calendar.css",
+      // "./web/static/js/admin-semantic/calendar.js",
       "./web/static/css/admin-semantic/admin_semantic.scss",
       "./web/static/js/admin-semantic/admin_semantic.js"
     ],
@@ -136,7 +136,23 @@ if(TARGET === 'start') {
       //   __dirname + "/web/static/admin-semantic"
       // ],
       alias: {
-        'semantic-ui': path.join(__dirname, 'node_modules', 'semantic-ui-css', 'semantic.js')
+        'jquery': path.join(
+                                  __dirname,
+                                  'node_modules',
+                                  'jQuery',
+                                  'dist',
+                                  'jquery.js'),
+        'semantic-ui': path.join(
+                                  __dirname,
+                                  'node_modules',
+                                  'semantic-ui-css',
+                                  'semantic.js'),
+        'semantic-ui-calendar': path.join(
+                                            __dirname,
+                                            'node_modules',
+                                            'semantic-ui-calendar',
+                                            'dist',
+                                            'calendar.js')
       }
     },
     plugins: [
