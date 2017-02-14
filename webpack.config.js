@@ -118,48 +118,73 @@ if(TARGET === 'start') {
 
     // Admin Style with semantic-ui-css Entry Point
     merge(common, {
-    entry: [
-      // "./web/static/semantic/semantic.css",
-      // "./web/static/semantic/semantic.js",
-      // "./web/static/css/admin-semantic/calendar.css",
-      // "./web/static/js/admin-semantic/calendar.js",
-      "./web/static/css/admin-semantic/admin_semantic.scss",
-      "./web/static/js/admin-semantic/admin_semantic.js"
-    ],
-    output: {
-      path: "./priv/static",
-      filename: "js/admin_semantic.js"
-    },
-    resolve: {
-      // modules: [
-      //   "node_modules",
-      //   __dirname + "/web/static/admin-semantic"
-      // ],
-      alias: {
-        'jquery': path.join(
-                                  __dirname,
-                                  'node_modules',
-                                  'jQuery',
-                                  'dist',
-                                  'jquery.js'),
-        'semantic-ui': path.join(
-                                  __dirname,
-                                  'node_modules',
-                                  'semantic-ui-css',
-                                  'semantic.js'),
-        'semantic-ui-calendar': path.join(
-                                            __dirname,
-                                            'node_modules',
-                                            'semantic-ui-calendar',
-                                            'dist',
-                                            'calendar.js')
-      }
-    },
-    plugins: [
-      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
-      new ExtractTextPlugin("css/admin_semantic.css")
-    ]
-  }),
+      entry: [
+        // "./web/static/semantic/semantic.css",
+        // "./web/static/semantic/semantic.js",
+        // "./web/static/css/admin-semantic/calendar.css",
+        // "./web/static/js/admin-semantic/calendar.js",
+        "./web/static/css/admin-semantic/admin_semantic.scss",
+        "./web/static/js/admin-semantic/admin_semantic.js"
+      ],
+      output: {
+        path: "./priv/static",
+        filename: "js/admin_semantic.js"
+      },
+      resolve: {
+        alias: {
+          'jquery': path.join(
+                                    __dirname,
+                                    'node_modules',
+                                    'jQuery',
+                                    'dist',
+                                    'jquery.js'),
+          'semantic-ui': path.join(
+                                    __dirname,
+                                    'node_modules',
+                                    'semantic-ui-css',
+                                    'semantic.js'),
+          'semantic-ui-calendar': path.join(
+                                              __dirname,
+                                              'node_modules',
+                                              'semantic-ui-calendar',
+                                              'dist',
+                                              'calendar.js')
+        }
+      },
+      plugins: [
+        new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
+        new ExtractTextPlugin("css/admin_semantic.css")
+      ]
+    }),
+
+    // Admin Style with materialize css Entry Point
+    merge(common, {
+      entry: [
+        "./web/static/css/admin-materialize/admin_materialize.scss",
+        "./web/static/js/admin-materialize/admin_materialize.js"
+      ],
+
+      output: {
+        path: "./priv/static",
+        filename: "js/admin_materialize.js"
+      },
+
+      resolve: {
+        alias: {
+          'materialize': path.join(
+                                    __dirname,
+                                    'node_modules',
+                                    'materialize-css',
+                                    'sass',
+                                    'materialize.scss'),
+        }
+      },
+
+      plugins: [
+        new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
+        new ExtractTextPlugin("css/admin_semantic.css")
+      ]
+    }),
 
     // Emails Style Entry Point
     merge(common, {
