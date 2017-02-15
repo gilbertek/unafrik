@@ -68,33 +68,6 @@ var common = {
       //     }
       //   )
       // },
-
-      // {
-      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
-      //   use: [
-      //     ExtractTextPlugin.extract({
-      //       fallback: "style-loader",
-      //       loader: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: { modules: true }
-      //         },
-      //         {
-      //           loader: 'sass-loader'
-      //         }
-      //       ]
-      //     })
-      //   ]
-      // },
-
-
-      // {
-      //   test: /\.(png|jpg|gif|svg)$/,
-      //   use: [
-      //     { loader: "file-loader?name=/images/[name].[hash].[ext]" }
-      //   ]
-      // },
-
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -248,8 +221,7 @@ module.exports = [
       ],
 
       alias: {
-        'materialize': path.join(
-                                  __dirname,
+        'materialize': path.join(__dirname,
                                   'node_modules',
                                   'materialize-css',
                                   'sass',
