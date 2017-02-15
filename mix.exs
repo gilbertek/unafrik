@@ -55,6 +55,7 @@ defmodule Unafrik.Mixfile do
      {:bamboo_smtp, "~> 1.2.1"},
      {:slugger, "~> 0.1.0"},
      {:ecto_enum, "~> 1.0.1"},
+     {:scrivener_ecto, "~> 1.0"},
      {:credo, "~> 0.6.1", only: [:dev, :test]},
      # {:dialyxir, "~> 0.4.4", only: [:dev, :test], runtime: false},
     ]

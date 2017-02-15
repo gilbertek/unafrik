@@ -16,6 +16,10 @@
 
 # mix phoenix.gen.html User users email:string password_hash:string \
 #   status:integer name:string
+#
+# mix phoenix.gen.model Account accounts \
+  # organization_id:references:organizations \
+  # user_id:references:users
 
 # mix phoenix.gen.html Session sessions email:string password:string --no-model
 
