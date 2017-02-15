@@ -24,9 +24,7 @@ var common = {
         use: [
           {
             loader: "babel-loader",
-            options: {
-              presets: ["es2015"]
-            }
+            options: { presets: ["es2015"] },
           }
         ],
       },
@@ -43,20 +41,72 @@ var common = {
         ]
       },
       {
-        test: [/\.sass$/, /\.css$/, /\.scss$/],
-        loader: ExtractTextPlugin.extract(
+        test: /\.css$/,
+        use: [
+          'style-loader',
           {
-            fallback: "style-loader",
-            loader: "css-loader!sass-loader"
-          }
-        )
+            loader: 'css-loader',
+            options: { modules: true }
+          },
+        ]
       },
+
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
+      },
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   loader: ExtractTextPlugin.extract(
+      //     {
+      //       fallback: "style-loader",
+      //       loader: "css-loader!sass-loader"
+      //     }
+      //   )
+      // },
+
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   use: [
+      //     ExtractTextPlugin.extract({
+      //       fallback: "style-loader",
+      //       loader: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: { modules: true }
+      //         },
+      //         {
+      //           loader: 'sass-loader'
+      //         }
+      //       ]
+      //     })
+      //   ]
+      // },
+
+
+      // {
+      //   test: /\.(png|jpg|gif|svg)$/,
+      //   use: [
+      //     { loader: "file-loader?name=/images/[name].[hash].[ext]" }
+      //   ]
+      // },
+
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
-          {loader: "file-loader?name=/images/[name].[hash].[ext]"}
+          { loader: "file-loader",
+            query: {
+              name: "images/[name].[ext]",
+              limit: 1000,
+            }
+          }
         ]
       },
+
       {
         test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
         loader: "file-loader",

@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached"
+    "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
