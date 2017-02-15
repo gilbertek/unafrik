@@ -14,44 +14,55 @@ var TARGET = process.env.npm_lifecycle_event;
 var common = {
   context: __dirname,
   devtool: "source-map",
+  target: 'async-node',
 
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: [/node_modules/, /semantic/, /uploads/],
-        loader: "babel-loader",
-        options: {
-          presets: ["es2015"]
-        }
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["es2015"]
+            }
+          }
+        ],
       },
       {
         test: /\.hbs$/,
-        loader: "handlebars-loader"
+        use: [
+          { loader: "handlebars-loader"}
+        ]
       },
       {
         test: /\.less$/,
-        loader: "less-loader"
+        use: [
+          {loader: "less-loader"}
+        ]
       },
       {
         test: [/\.sass$/, /\.css$/, /\.scss$/],
         loader: ExtractTextPlugin.extract(
           {
-            fallbackLoader: "style-loader",
+            fallback: "style-loader",
             loader: "css-loader!sass-loader"
           }
         )
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: "file-loader?name=/images/[name].[ext]"
+        use: [
+          {loader: "file-loader?name=/images/[name].[hash].[ext]"}
+        ]
       },
       {
         test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
         loader: "file-loader",
         query: {
           limit: 1000,
-          name: "fonts/[name].[ext]?[hash]"
+          filename: 'fonts/[name].[chunkhash].[ext]'
         }
       },
     ]
@@ -65,7 +76,13 @@ var common = {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+
+    new webpack.DefinePlugin({
+      "process.env": {
+          NODE_ENV: JSON.stringify("production")
+      }
+    }),
   ]
 };
 
@@ -84,11 +101,18 @@ module.exports = [
       modules: [
         "node_modules",
         __dirname + "/web/static/app"
-      ]
+      ],
+      alias: {
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+      }
     },
     plugins: [
-      new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
-      new ExtractTextPlugin("css/app.css")
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+      }),
+      new CopyWebpackPlugin([{from: "./web/static/assets"}]),
+      new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
     ]
   }),
 
