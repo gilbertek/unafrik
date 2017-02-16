@@ -30,44 +30,38 @@ var common = {
       },
       {
         test: /\.hbs$/,
-        use: [
-          { loader: "handlebars-loader"}
-        ]
+        use: [{ loader: "handlebars-loader" }]
       },
       {
         test: /\.less$/,
-        use: [
-          {loader: "less-loader"}
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { modules: true }
-          },
-        ]
-      },
-
-      {
-        test: /\.(sass|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ]
+        use: [{ loader: "less-loader" }]
       },
       // {
-      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
-      //   loader: ExtractTextPlugin.extract(
+      //   test: /\.css$/,
+      //   use: [
+      //     'style-loader',
       //     {
-      //       fallback: "style-loader",
-      //       loader: "css-loader!sass-loader"
-      //     }
-      //   )
+      //       loader: 'css-loader',
+      //       options: { modules: true }
+      //     },
+      //   ]
       // },
+
+      // {
+      //   test: /\.(sass|scss)$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     'sass-loader',
+      //   ]
+      // },
+      {
+        test: [/\.sass$/, /\.css$/, /\.scss$/],
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          loader: "css-loader!sass-loader"
+        })
+      },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -97,14 +91,11 @@ var common = {
       output: {comments: false},
       sourceMap: true
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
+
+    new webpack.LoaderOptionsPlugin({ minimize: true }),
 
     new webpack.DefinePlugin({
-      "process.env": {
-          NODE_ENV: JSON.stringify("production")
-      }
+      "process.env": { NODE_ENV: JSON.stringify("production") }
     }),
   ]
 };
@@ -121,10 +112,7 @@ module.exports = [
       filename: "js/[name].[chunkhash].js"
     },
     resolve: {
-      modules: [
-        "node_modules",
-        __dirname + "/web/static/app"
-      ],
+      modules: ["node_modules", __dirname + "/web/static/app"],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
       }
@@ -150,10 +138,7 @@ module.exports = [
       filename: "js/[name].[chunkhash].js"
     },
     resolve: {
-      modules: [
-        "node_modules",
-        __dirname + "/web/static/app"
-      ]
+      modules: ["node_modules", __dirname + "/web/static/app"]
     },
     plugins: [
       new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
@@ -176,23 +161,13 @@ module.exports = [
     },
     resolve: {
       alias: {
-        'jquery': path.join(
-                                  __dirname,
-                                  'node_modules',
-                                  'jQuery',
-                                  'dist',
-                                  'jquery.js'),
-        'semantic-ui': path.join(
-                                  __dirname,
-                                  'node_modules',
-                                  'semantic-ui-css',
-                                  'semantic.js'),
-        'semantic-ui-calendar': path.join(
-                                            __dirname,
-                                            'node_modules',
-                                            'semantic-ui-calendar',
-                                            'dist',
-                                            'calendar.js')
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        'semantic-ui': path.resolve(__dirname,
+                                  'node_modules/semantic-ui-css/semantic.js'),
+
+        'semantic-ui-calendar': path.resolve(
+                          __dirname,
+                          'node_modules/semantic-ui-calendar/dist/calendar.js')
       }
     },
     plugins: [
@@ -230,7 +205,7 @@ module.exports = [
     },
 
     plugins: [
-      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
+      new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
       new ExtractTextPlugin("css/admin_semantic.css")
     ]
   }),
@@ -243,13 +218,8 @@ module.exports = [
       filename: "css/email.css"
     },
     resolve: {
-      modules: [
-        "node_modules",
-        __dirname + "/web/static/app"
-      ]
+      modules: ["node_modules", __dirname + "/web/static/app"]
     },
-    plugins: [
-      new ExtractTextPlugin("css/email.css")
-    ]
+    plugins: [new ExtractTextPlugin("css/email.css")]
   })
 ];

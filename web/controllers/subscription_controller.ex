@@ -1,6 +1,9 @@
 defmodule Unafrik.SubscriptionController do
   use Unafrik.Web, :controller
 
+  require IEx
+  require Logger
+
   alias Unafrik.Subscription
 
   def new(conn, _params) do
@@ -9,6 +12,9 @@ defmodule Unafrik.SubscriptionController do
   end
 
   def create(conn, %{"subscription" => subscription_params}) do
+
+    IEx.pry
+
     changeset = Subscription.changeset(%Subscription{}, subscription_params)
 
     case Repo.insert(changeset) do

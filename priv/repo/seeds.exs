@@ -110,3 +110,7 @@ unless Repo.get_by(User, email: admin_params[:email]) do
   |> User.registration_changeset(admin_params)
   |> Repo.insert!
 end
+
+def full_name(user) do
+  "#{user.first_name} #{user.last_name}"
+end
