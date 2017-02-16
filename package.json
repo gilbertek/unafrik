@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "babel": {
+    "presets": ["es2015"]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
@@ -24,6 +27,7 @@
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
@@ -43,7 +47,7 @@
     "webpack-merge": "^2.6.1"
   },
   "dependencies": {
-    "bourbon": "^4.2.7",
+    "bourbon": "^4.3.2",
     "bourbon-neat": "^1.8.0",
     "jquery": "^3.1.1",
     "modernizr": "^3.3.1",

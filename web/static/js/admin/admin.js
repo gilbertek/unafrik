@@ -1,3 +1,5 @@
+import 'phoenix';
+import 'phoenix_html';
 // import { modernizr } from 'modernizr';
 
 jQuery(document).ready(function(){

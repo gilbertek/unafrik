@@ -6,6 +6,8 @@ var merge = require("webpack-merge");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var bourbon = require('bourbon').includePaths
+var neat = require('bourbon-neat').includePaths
 
 var env = process.env.MIX_ENV || 'dev';
 var isProduction = (env === 'prod')
@@ -115,6 +117,7 @@ module.exports = [
       modules: ["node_modules", __dirname + "/web/static/app"],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
       }
     },
     plugins: [
@@ -162,9 +165,9 @@ module.exports = [
     resolve: {
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
         'semantic-ui': path.resolve(__dirname,
                                   'node_modules/semantic-ui-css/semantic.js'),
-
         'semantic-ui-calendar': path.resolve(
                           __dirname,
                           'node_modules/semantic-ui-calendar/dist/calendar.js')
@@ -190,12 +193,10 @@ module.exports = [
     },
 
     resolve: {
-      modules: [
-        "node_modules",
-        path.resolve(__dirname + "/web/static/js")
-      ],
-
+      modules: ["node_modules", path.resolve(__dirname + "/web/static/js")],
       alias: {
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
         'materialize': path.join(__dirname,
                                   'node_modules',
                                   'materialize-css',
