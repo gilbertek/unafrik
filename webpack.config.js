@@ -157,6 +157,36 @@ module.exports = [
   }),
 
   // Admin Style with semantic-ui-css Entry Point
+  merge(common, {
+    entry: {
+      semantic: [
+        // "./web/static/css/admin-semantic/calendar.css",
+        // "./web/static/js/admin-semantic/calendar.js",
+        "./web/static/css/admin-semantic/admin_semantic.scss",
+        "./web/static/js/admin-semantic/admin_semantic.js"]
+    },
+    output: {
+      path: "./priv/static",
+      filename: "js/[name].[chunkhash].js"
+    },
+    resolve: {
+      alias: {
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
+        'semantic-ui': path.resolve(__dirname,
+                                  'node_modules/semantic-ui-css/semantic.js'),
+        'semantic-ui-calendar': path.resolve(
+                          __dirname,
+                          'node_modules/semantic-ui-calendar/dist/calendar.js')
+      }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
+      new ExtractTextPlugin("css/admin_semantic.css")
+    ]
+  }),
+
+  // Admin Style with semantic-ui-css Entry Point
   // merge(common, {
   //   entry: {
   //     dashboard: [
