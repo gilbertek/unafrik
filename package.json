@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
-    "build": "webpack"
+    "build": "WEBPACK_ENV=build webpack",
+    "deploy": "WEBPACK_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -47,12 +48,13 @@
     "webpack-merge": "^2.6.1"
   },
   "dependencies": {
-    "bourbon": "^4.3.2",
+    "bourbon": "^4.2.7",
     "bourbon-neat": "^1.8.0",
     "jquery": "^3.1.1",
-    "modernizr": "^3.3.1",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
+    "semantic-ui-css": "^2.2.4",
+    "sortablejs": "^1.5.0-rc1",
     "turbolinks": "^5.0.0"
   }
 }
