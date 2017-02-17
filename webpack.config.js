@@ -186,40 +186,37 @@ module.exports = [
     ]
   }),
 
-  // Admin Style with semantic-ui-css Entry Point
-  // merge(common, {
-  //   entry: {
-  //     dashboard: [
-  //       "./web/static/css/dashboard/calendar.css",
-  //       "./web/static/js/dashboard/calendar.js",
-  //       "./web/static/css/dashboard/dashboard.scss",
-  //       "./web/static/js/dashboard/dashboard.js"]
-  //   },
-  //   output: {
-  //     path: "./priv/static",
-  //     filename: "js/[name].js"
-  //   },
-  //   resolve: {
-  //     modules: ["node_modules", __dirname + "/web/static/app"],
-  //     alias: {
-  //       "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
-  //       'semantic-ui': path.join(__dirname,
-  //                                 'node_modules',
-  //                                 'semantic-ui-css',
-  //                                 'semantic.js'),
-  //       'semantic-ui-calendar': path.join( __dirname,
-  //                                           'node_modules',
-  //                                           'semantic-ui-calendar',
-  //                                           'dist',
-  //                                           'calendar.js')
-  //     }
-  //   },
-  //   plugins: [
-  //     new CopyWebpackPlugin([{from: "./web/static/assets"}]),
-  //     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
-  //     new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
-  //   ]
-  // }),
+  // Admin Style with materialize css Entry Point
+  merge(common, {
+    entry: {
+      materialize: [
+        "./web/static/css/admin-materialize/admin_materialize.scss",
+        "./web/static/js/admin-materialize/admin_materialize.js"]
+    },
+
+    output: {
+      path: "./priv/static",
+      filename: "js/[name].[chunkhash].js"
+    },
+
+    resolve: {
+      modules: ["node_modules", path.resolve(__dirname + "/web/static/js")],
+      alias: {
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
+        'materialize': path.join(__dirname,
+                                  'node_modules',
+                                  'materialize-css',
+                                  'sass', 'materialize.scss'),
+      }
+    },
+
+    plugins: [
+      new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
+      new ExtractTextPlugin("css/admin_semantic.css")
+    ]
+  }),
+
 
   // Emails Style Entry Point
   merge(common, {
