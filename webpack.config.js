@@ -6,6 +6,9 @@ var merge = require("webpack-merge");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// includePaths: require('bourbon-neat').includePaths.concat('./node_modules/breakpoint-sass/stylesheets/'),
 
 var common = {
   context: __dirname,
@@ -39,23 +42,22 @@ var common = {
       //     },
       //   ]
       // },
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   loader: ExtractTextPlugin.extract(
+      //     {
+      //       fallback: "style-loader",
+      //       loader: "css-loader!sass-loader"
+      //     }
+      //   )
+      // },
       {
         test: [/\.sass$/, /\.css$/, /\.scss$/],
-        loader: ExtractTextPlugin.extract(
-          {
-            fallback: "style-loader",
-            loader: "css-loader!sass-loader"
-          }
-        )
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ["css-loader", "sass-loader"],
+        })
       },
-      // {
-      //   test: /\.(sass|scss)$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     'sass-loader',
-      //   ]
-      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -108,8 +110,8 @@ module.exports = [
       filename: "js/[name].js"
     },
     resolve: {
-      modules: ["node_modules", __dirname + "/web/static/app"],
-      moduleExtensions: ['.js', '.jsx'],
+      modules: ["node_modules", __dirname + "/web/static/js/app"],
+      extensions: [".js", ".json", ".jsx", ".css"],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
         'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
@@ -127,25 +129,25 @@ module.exports = [
   }),
 
   // Admin Style Entry Point
-  merge(common, {
-    entry: {
-      admin: ["./web/static/css/admin/admin.scss",
-              "./web/static/js/admin/admin.js"]
-    },
-    output: {
-      path: "./priv/static",
-      filename: "js/[name].[chunkhash].js"
-    },
-    resolve: { modules: ["node_modules", __dirname + "/web/static/app" ]},
-    plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
-      new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
-      new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
-    ]
-  }),
+  // merge(common, {
+  //   entry: {
+  //     admin: ["./web/static/css/admin/admin.scss",
+  //             "./web/static/js/admin/admin.js"]
+  //   },
+  //   output: {
+  //     path: "./priv/static",
+  //     filename: "js/[name].[chunkhash].js"
+  //   },
+  //   resolve: { modules: ["node_modules", __dirname + "/web/static/app" ]},
+  //   plugins: [
+  //     new webpack.ProvidePlugin({
+  //       $: "jquery",
+  //       jQuery: "jquery"
+  //     }),
+  //     new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
+  //     new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
+  //   ]
+  // }),
 
   // Admin Style with semantic-ui-css Entry Point
   merge(common, {
@@ -156,9 +158,11 @@ module.exports = [
     },
     output: {
       path: "./priv/static",
-      filename: "js/[name].[chunkhash].js"
+      filename: "js/[name].[hash].js"
     },
     resolve: {
+      modules: ["node_modules", path.resolve(__dirname + "/web/static/js/admin-semantic")],
+      extensions: [".js", ".json", ".jsx", ".css"],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
         "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
@@ -185,11 +189,12 @@ module.exports = [
 
     output: {
       path: "./priv/static",
-      filename: "js/[name].[chunkhash].js"
+      filename: "js/[name].[hash].js"
     },
 
     resolve: {
-      modules: ["node_modules", path.resolve(__dirname + "/web/static/js")],
+      modules: ["node_modules", path.resolve(__dirname + "/web/static/js/admin-materialize")],
+      extensions: [".js", ".json", ".jsx", ".css"],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
         "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
