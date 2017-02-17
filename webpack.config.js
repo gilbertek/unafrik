@@ -17,9 +17,9 @@ var common = {
         test: /\.js$/,
         exclude: [/node_modules/, /semantic/, /uploads/],
         use: [{
-            loader: "babel-loader",
-            options: { presets: ["es2015"] }
-          }],
+          loader: "babel-loader",
+          options: { presets: ["es2015"] }
+        }],
       },
       {
         test: /\.hbs$/,
@@ -112,11 +112,7 @@ module.exports = [
       moduleExtensions: ['.js', '.jsx'],
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
-        'jQuery': path.join(__dirname,
-                            'node_modules',
-                            'jquery',
-                            'dist',
-                            'jquery.js'),
+        'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
         "normalize": path.resolve(__dirname, "node_modules/normalize.css/normalize.css"),
       }
     },
@@ -140,12 +136,7 @@ module.exports = [
       path: "./priv/static",
       filename: "js/[name].[chunkhash].js"
     },
-    resolve: {
-      modules: [
-        "node_modules",
-        __dirname + "/web/static/app"
-      ],
-    },
+    resolve: { modules: ["node_modules", __dirname + "/web/static/app" ]},
     plugins: [
       new webpack.ProvidePlugin({
         $: "jquery",
@@ -160,8 +151,6 @@ module.exports = [
   merge(common, {
     entry: {
       semantic: [
-        // "./web/static/css/admin-semantic/calendar.css",
-        // "./web/static/js/admin-semantic/calendar.js",
         "./web/static/css/admin-semantic/admin_semantic.scss",
         "./web/static/js/admin-semantic/admin_semantic.js"]
     },
@@ -204,10 +193,8 @@ module.exports = [
       alias: {
         "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
         "modernizr": path.resolve(__dirname, "node_modules/modernizr/src/Modernizr.js"),
-        'materialize': path.join(__dirname,
-                                  'node_modules',
-                                  'materialize-css',
-                                  'sass', 'materialize.scss'),
+        'materialize': path.join(__dirname, 'node_modules',
+                                  'materialize-css', 'sass', 'materialize.scss'),
       }
     },
 
