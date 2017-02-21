@@ -147,6 +147,28 @@ module.exports = [
     ]
   }),
 
+  // Admin Style Entry Point v2
+  merge(common, {
+    entry: {
+      admin: ["./web/static/css/admin_two/admin.scss",
+              "./web/static/js/admin_two/admin.js"]
+    },
+    output: {
+      path: "./priv/static",
+      filename: "js/[name].[chunkhash].js"
+    },
+    resolve: { modules: ["node_modules", __dirname + "/web/static/js/admin_two" ]},
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+      }),
+      new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
+      new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
+    ]
+  }),
+
+
   // Admin Style with semantic-ui-css Entry Point
   merge(common, {
     entry: {
