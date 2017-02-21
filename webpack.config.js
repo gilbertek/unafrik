@@ -7,8 +7,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-// includePaths: require('bourbon-neat').includePaths
-
 var common = {
   context: __dirname,
   devtool: "source-map",
@@ -58,44 +56,6 @@ var common = {
           }
         )
       },
-      // {
-      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: "style-loader",
-      //     use: [
-      //       {
-      //         loader: "css-loader"
-      //       },
-      //       {
-      //         loader: "sass-loader",
-      //         include: [
-      //           path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
-      //           path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
-      //         ]
-      //       }],
-      //   })
-      // },
-      // {
-      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
-      //   include: [
-      //     path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
-      //     path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
-      //   ],
-      //   use: [
-      //        { loader: "style-loader" },
-      //        { loader: "css-loader" },
-      //        { loader: "sass-loader" }
-      //   ]
-      // },
-
-      // {
-      //   test: [/\.sass$/, /\.scss$/],
-      //   include: [
-      //     path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
-      //     path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
-      //   ],
-      //   use: [{loader: "sass-loader"}],
-      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -246,7 +206,6 @@ module.exports = [
       new ExtractTextPlugin("css/admin_semantic.css")
     ]
   }),
-
 
   // Emails Style Entry Point
   merge(common, {
