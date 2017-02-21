@@ -25,7 +25,7 @@ defmodule Unafrik.Router do
   end
 
   pipeline :admin do
-    plug :put_layout, {Unafrik.LayoutView, :admin}
+    plug :put_layout, {Unafrik.LayoutView, :admin_two}
   end
 
   scope "/", Unafrik do
