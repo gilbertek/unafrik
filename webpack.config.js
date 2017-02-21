@@ -6,7 +6,6 @@ var merge = require("webpack-merge");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // includePaths: require('bourbon-neat').includePaths.concat('./node_modules/breakpoint-sass/stylesheets/'),
 
@@ -15,9 +14,17 @@ var common = {
   devtool: "source-map",
   target: 'async-node',
 
+  // Flag for developemnt
+  // watch: true,
+  // watchOptions: {
+  //   aggregateTimeout: 300,
+  //   poll: 1000,
+  //   ignored: /node_modules/
+  // },
+
   module: {
     rules: [{
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: [/node_modules/, /semantic/, /uploads/],
         use: [{
           loader: "babel-loader",
@@ -42,22 +49,53 @@ var common = {
       //     },
       //   ]
       // },
-      // {
-      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
-      //   loader: ExtractTextPlugin.extract(
-      //     {
-      //       fallback: "style-loader",
-      //       loader: "css-loader!sass-loader"
-      //     }
-      //   )
-      // },
       {
         test: [/\.sass$/, /\.css$/, /\.scss$/],
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "sass-loader"],
-        })
+        loader: ExtractTextPlugin.extract(
+          {
+            fallback: "style-loader",
+            loader: "css-loader!sass-loader"
+          }
+        )
       },
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: "style-loader",
+      //     use: [
+      //       {
+      //         loader: "css-loader"
+      //       },
+      //       {
+      //         loader: "sass-loader",
+      //         include: [
+      //           path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
+      //           path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
+      //         ]
+      //       }],
+      //   })
+      // },
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   include: [
+      //     path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
+      //     path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
+      //   ],
+      //   use: [
+      //        { loader: "style-loader" },
+      //        { loader: "css-loader" },
+      //        { loader: "sass-loader" }
+      //   ]
+      // },
+
+      // {
+      //   test: [/\.sass$/, /\.scss$/],
+      //   include: [
+      //     path.resolve(__dirname, "node_modules/bourbon/app/assets/stylesheets/bourbon"),
+      //     path.resolve(__dirname, "node_modules/bourbon-neat/app/assets/stylesheets/neat")
+      //   ],
+      //   use: [{loader: "sass-loader"}],
+      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -100,33 +138,33 @@ var common = {
 
 module.exports = [
   // Application Style Entry Point
-  merge(common, {
-    entry: {
-      app: ["./web/static/css/app/app.scss",
-            "./web/static/js/app/app.js"]
-    },
-    output: {
-      path: "./priv/static",
-      filename: "js/[name].js"
-    },
-    resolve: {
-      modules: ["node_modules", __dirname + "/web/static/js/app"],
-      extensions: [".js", ".json", ".jsx", ".css"],
-      alias: {
-        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
-        'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
-        "normalize": path.resolve(__dirname, "node_modules/normalize.css/normalize.css"),
-      }
-    },
-    plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
-      new CopyWebpackPlugin([{from: "./web/static/assets"}]),
-      new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
-    ]
-  }),
+  // merge(common, {
+  //   entry: {
+  //     app: ["./web/static/css/app/app.scss",
+  //           "./web/static/js/app/app.js"]
+  //   },
+  //   output: {
+  //     path: "./priv/static",
+  //     filename: "js/[name].js"
+  //   },
+  //   resolve: {
+  //     modules: ["node_modules", __dirname + "/web/static/js/app"],
+  //     extensions: [".js", ".json", ".jsx", ".css"],
+  //     alias: {
+  //       "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+  //       'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
+  //       "normalize": path.resolve(__dirname, "node_modules/normalize.css/normalize.css"),
+  //     }
+  //   },
+  //   plugins: [
+  //     new webpack.ProvidePlugin({
+  //       $: "jquery",
+  //       jQuery: "jquery"
+  //     }),
+  //     new CopyWebpackPlugin([{from: "./web/static/assets"}]),
+  //     new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
+  //   ]
+  // }),
 
   // Admin Style Entry Point
   // merge(common, {
