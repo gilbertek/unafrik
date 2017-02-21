@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-// includePaths: require('bourbon-neat').includePaths.concat('./node_modules/breakpoint-sass/stylesheets/'),
+// includePaths: require('bourbon-neat').includePaths
 
 var common = {
   context: __dirname,
@@ -138,33 +138,33 @@ var common = {
 
 module.exports = [
   // Application Style Entry Point
-  // merge(common, {
-  //   entry: {
-  //     app: ["./web/static/css/app/app.scss",
-  //           "./web/static/js/app/app.js"]
-  //   },
-  //   output: {
-  //     path: "./priv/static",
-  //     filename: "js/[name].js"
-  //   },
-  //   resolve: {
-  //     modules: ["node_modules", __dirname + "/web/static/js/app"],
-  //     extensions: [".js", ".json", ".jsx", ".css"],
-  //     alias: {
-  //       "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
-  //       'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
-  //       "normalize": path.resolve(__dirname, "node_modules/normalize.css/normalize.css"),
-  //     }
-  //   },
-  //   plugins: [
-  //     new webpack.ProvidePlugin({
-  //       $: "jquery",
-  //       jQuery: "jquery"
-  //     }),
-  //     new CopyWebpackPlugin([{from: "./web/static/assets"}]),
-  //     new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
-  //   ]
-  // }),
+  merge(common, {
+    entry: {
+      app: ["./web/static/css/app/app.scss",
+            "./web/static/js/app/app.js"]
+    },
+    output: {
+      path: "./priv/static",
+      filename: "js/[name].js"
+    },
+    resolve: {
+      modules: ["node_modules", __dirname + "/web/static/js/app"],
+      extensions: [".js", ".json", ".jsx", ".css"],
+      alias: {
+        "jquery": path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+        'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
+        "normalize": path.resolve(__dirname, "node_modules/normalize.css/normalize.css"),
+      }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+      }),
+      new CopyWebpackPlugin([{from: "./web/static/assets"}]),
+      new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
+    ]
+  }),
 
   // Admin Style Entry Point
   // merge(common, {
