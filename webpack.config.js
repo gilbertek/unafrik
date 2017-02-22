@@ -84,14 +84,9 @@ var common = {
       output: {comments: false},
       sourceMap: true
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-
+    new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.DefinePlugin({
-      "process.env": {
-          NODE_ENV: JSON.stringify("production")
-      }
+      "process.env": { NODE_ENV: JSON.stringify("production") }
     }),
   ]
 };
@@ -117,10 +112,7 @@ module.exports = [
       }
     },
     plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
+      new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
       new CopyWebpackPlugin([{from: "./web/static/assets"}]),
       new ExtractTextPlugin({filename: "css/[name].css", allChunks: true,})
     ]
@@ -134,7 +126,7 @@ module.exports = [
     },
     output: {
       path: "./priv/static",
-      filename: "js/[name].[chunkhash].js"
+      filename: "js/[name].js"
     },
     resolve: { modules: ["node_modules", __dirname + "/web/static/js/admin" ]},
     plugins: [
@@ -155,14 +147,11 @@ module.exports = [
     },
     output: {
       path: "./priv/static",
-      filename: "js/[name].[chunkhash].js"
+      filename: "js/[name].js"
     },
     resolve: { modules: ["node_modules", __dirname + "/web/static/js/admin_two" ]},
     plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
+      new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
       new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
       new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
     ]
@@ -178,7 +167,7 @@ module.exports = [
     },
     output: {
       path: "./priv/static",
-      filename: "js/[name].[hash].js"
+      filename: "js/[name].js"
     },
     resolve: {
       modules: ["node_modules", path.resolve(__dirname + "/web/static/js/admin-semantic")],
@@ -195,7 +184,8 @@ module.exports = [
     },
     plugins: [
       new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
-      new ExtractTextPlugin("css/admin_semantic.css")
+      new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
+      new ExtractTextPlugin({ filename: "css/admin_semantic.css", allChunks: true})
     ]
   }),
 
@@ -225,7 +215,7 @@ module.exports = [
 
     plugins: [
       new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
-      new ExtractTextPlugin("css/admin_semantic.css")
+      new ExtractTextPlugin({ filename: "css/admin_semantic.css", allChunks: true})
     ]
   }),
 
@@ -239,6 +229,6 @@ module.exports = [
     resolve: {
       modules: ["node_modules", __dirname + "/web/static/app"]
     },
-    plugins: [new ExtractTextPlugin({ filename: "css/email.css" })]
+    plugins: [new ExtractTextPlugin({ filename: "css/email.css", allChunks: true })]
   })
 ];

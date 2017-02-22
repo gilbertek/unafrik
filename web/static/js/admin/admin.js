@@ -1,8 +1,9 @@
 import 'phoenix';
 import 'phoenix_html';
+import $ from 'jquery';
 // import { modernizr } from 'modernizr';
 
-jQuery(document).ready(function(){
+$(document).ready(function(){
 	//cache DOM elements
 	var mainContent = $('.cd-main-content'),
 		header = $('.cd-main-header'),
