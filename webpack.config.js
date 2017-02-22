@@ -6,11 +6,6 @@ var merge = require("webpack-merge");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-<<<<<<< HEAD
-=======
-
-// includePaths: require('bourbon-neat').includePaths.concat('./node_modules/breakpoint-sass/stylesheets/'),
->>>>>>> cleanps
 
 var common = {
   context: __dirname,
