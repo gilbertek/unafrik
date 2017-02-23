@@ -8,12 +8,236 @@
     <meta name="author" content="">
 
     <title>Hello Unafrik!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/admin_two.css") %>">
   </head>
 
   <body>
-    <footer role="contentinfo">
-    </footer>
+    <header class="header">
+      <div class="header__logo-container">
+        <a href="#"><img class="header__logo-container-logo" src="#/img/tb_bug@2x.png"></a>
+        <a href="#"><span class="header__logo-container-description">Account</span></a>
+      </div>
+
+      <div id="" class="header__nav">
+        <div class="header__nav-body">
+          <i class="header-icon header-user-icon"></i>
+          <span class="header-title">Gilbert Ekoue
+            <i class="header-icon header-nav-arrow-down"></i>
+          </span>
+
+          <ul class="header-menu">
+            <li>
+              <a href="#userSettings">Profile</a>
+            </li>
+            <li>
+              <a href="#logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="" class="header__nav">
+        <div class="header__nav-body">
+          <i class="header-icon header-question-mark"></i>
+          <span class="header-title">Help
+            <i class="header-icon header-nav-arrow-down"></i>
+          </span>
+        </div>
+      </div>
+
+      <div id="" class="header__nav">
+        <div class="header__nav-body">
+          <i class="header-icon header-dev-center"></i>
+          <a href="#developer">
+            <span class="header-title header-top-nav-padding">Developer Center</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <ul id="ac-side-navs">
+      <div id="">
+        <li class="ac-side-nav">
+          <a href="#" class="">
+            <i class="ac-icon ac-overview"></i>
+            <span>Account Overview</span>
+          </a>
+        </li>
+      <div class="ac-nav-no-projects">
+        <div class="ac-header">
+          <i class="ac-icon ac-embed"></i>
+          <span>0 VIDEO CHAT EMBEDS</span>
+        </div>
+
+        <div class="ac-body">
+          Quickly generate some code
+                      to embed in your website
+                      (basic features +  web only)
+        </div>
+
+        <div class="ac-body">
+          <button class="ac-action-standard ac-btn-green-ghost">
+            <i class="ac-icon ac-add-icon"></i>
+            <span>Create embed</span>
+          </button>
+        </div>
+      </div>
+      <li class="ac-projects-nav ac-side-nav active">
+        <a class="active-link">
+          <i class="ac-icon ac-project-white"></i>
+          <span class="ac-nav-label ac-size8 ac-color-grey2">PROJECT</span>
+          <span class="ac-overflow-ellipsis">ALLO</span>
+          <i class="ac-icon ac-small-arrow-right-white"></i>
+        </a>
+      </li>
+    </div>
+    <li class="ac-side-nav">
+      <a href="#settings" class="">
+        <i class="ac-icon ac-settings"></i>
+        <span>Account Settings</span>
+      </a>
+    </li>
+    <div id="ac-side-nav-upgrade">
+      <strong> YOU ARE IN TRIAL MODE</strong>
+      <button class="ac-btn-standard ac-btn-blue-fill ac-left-upgrade">
+        Upgrade now
+      </button>
+    </div>
+
+    <div>
+      <div id="ac-side-nav-legal-container" class="ac-size10">
+        <a id="ac-privacy-policy" href="#https://tokbox.com/support/privacy-policy" target="_blank">
+          Privacy Policy
+        </a>
+        <span>|</span>
+        <a id="ac-terms-of-service" href="https://tokbox.com/support/tos" target="_blank">
+          Terms of Service
+        </a>
+      </div>
+    </div>
+  </ul>
+
+
+    <div id="ac-content">
+      <div class="animated fadeIn">
+        <div id="ac-account-overview-header" class="ac-section ac-section-blue ac-section-padding">
+          <div class="ac-section-header">
+            <div class="ac-row">
+              <div class="ac-column ac-c-20">
+                <span class="ac-size32 ac-capitalize ac-overflow-ellipsis ">
+                  Teladoc
+                </span>
+              </div>
+
+              <div class="ac-column ac-c-80 ac-right-align">
+                <span class="ac-size14 ac-margin-right ac-fade">RUNNING TRIAL</span>
+                <span class="ac-size24">$</span>
+                <span class="ac-size32">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ac-section-body">
+            <div class="ac-row">
+              <div class="ac-column ac-c-80 ac-right-align ac-offset-20">
+                <div class="ac-usage-overview">
+                  <i class="ac-icon ac-project-minutes"></i>
+                  <span class="ac-fade ac-size12">SUBSCRIBED MIN.</span>
+                  <div class="ac-value ac-left-align">
+                    <span class="ac-size14">$</span>
+                    <span class="ac-size20">0</span>
+                  </div>
+                </div>
+
+                <div class="ac-usage-overview">
+                  <i class="ac-icon ac-project-archiving"></i>
+                  <span class="ac-fade ac-size12">ARCHIVED MIN</span>
+                  <div class="ac-value ac-left-align">
+                    <span class="ac-size14">$</span>
+                    <span class="ac-size20">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="ac-trial-container">
+          <div id="ac-trial-counter" style="position: relative;">
+            <svg viewBox="0 0 100 100" style="display: block; width: 100%;">
+              <path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#0099CC" stroke-width="9" fill-opacity="0"></path>
+              <path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#dbe4e8" stroke-width="10" fill-opacity="0" style="stroke-dasharray: 282.783, 282.783; stroke-dashoffset: 222.187;"></path>
+            </svg>
+            <p class="ac-counter-label " style="color: rgb(0, 0, 0); position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%);">22</p>
+          </div>
+
+          <div class="ac-trial-body">
+            <div class="ac-row">
+              <div class="ac-column ac-c-75">
+                <span class="ac-label-grey5 ac-size15 ac-label">You are currently in the trial period</span>
+                <p>Upgrade to a paid account to continue using TokBox after your trial expires.</p>
+              </div>
+
+              <div class="ac-column ac-c-25">
+                <button class="ac-btn-standard ac-btn-blue-fill ac-left-upgrade">
+                   Upgrade now
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+
+         <div id="ac-account-no-project-overview" class="ac-section-with-header">
+           <div class="ac-section-header">
+             <span>Get Started</span>
+           </div>
+
+           <div class="ac-section-body">
+             <div class="ac-row ac-padding-bottom-2x">
+               <div class="ac-column ac-c-20 ac-left-align">
+                 <img src="./img/embed_icon-big.svg" width="85">
+               </div><div class="ac-column ac-c-80">
+                 <span class="ac-label-grey5 ac-size15 ac-label">Create a video chat embed</span>
+                 <p>Start with generated code for quick implementation into your existing website.
+                   We recommend test projects for proofs-of-concept, small-scale testing, and other
+                   lightweight use cases - not for full-scale production.
+                   (Audio and video features, web only)
+                 </p>
+
+                 <div class="row ac-right-align">
+                   <button class="ac-btn-small ac-btn-green-fill">Create embed</button>
+                 </div>
+               </div>
+             </div>
+
+             <div class="ac-row">
+               <div class="ac-column ac-c-20 ac-left-align">
+                 <img src="./img/project_banner@2x.png" width="85">
+               </div>
+
+               <div class="ac-column ac-c-80">
+                 <span class="ac-label-grey5 ac-size15 ac-label">Create a project</span>
+                 <p>
+                   Projects allow for maximum customization, access to all features
+                   (including archiving, screensharing, monitoring configuration,
+                   and more), web and mobile interoperability, and production-ready
+                   scalability. When you create a new projects, you will get an
+                   API Key and Secret, allowing your application to communicate with
+                   the OpenTok platform.
+                 </p>
+
+                 <div class="row ac-right-align">
+                   <button class="ac-btn-small ac-btn-green-fill">Create project</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <div class="ac-section-footer">
+           </div>
+         </div>
+       </div>
+     </div>
     <script src="<%= static_path(@conn, "/js/admin.js") %>"></script>
   </body>
 </html>

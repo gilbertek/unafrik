@@ -142,7 +142,7 @@ module.exports = [
   // Admin Style Entry Point v2
   merge(common, {
     entry: {
-      admin: ["./web/static/css/admin_two/admin.scss",
+      admin_two: ["./web/static/css/admin_two/admin.scss",
               "./web/static/js/admin_two/admin.js"]
     },
     output: {
