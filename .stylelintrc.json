@@ -1,0 +1,11 @@
+/* .stylelintrc.json */
+
+{
+  "rules": {
+    "declaration-colon-space-after": "always",
+    "color-no-invalid-hex": true,
+    "declaration-block-no-ignored-properties": true,
+    "function-blacklist": ["rgb"],
+    "selector-no-type": true
+  }
+}
