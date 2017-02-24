@@ -1,6 +1,7 @@
 a {
   text-decoration: none;
 }
+
 #ac-header {
   position: fixed;
   background: #1f1a17;
@@ -12,6 +13,7 @@ a {
   color: #fff;
   min-width: 436px;
 }
+
 #ac-header .ac-logo-container {
   display: inline-block;
   height: 60px;
@@ -19,27 +21,32 @@ a {
   vertical-align: middle;
   margin-left: 19px;
 }
+
 #ac-header .ac-logo-container > a > img,
 #ac-header .ac-logo-container > a,
 #ac-header .ac-logo-container > a > span {
   border: none;
   outline: none;
 }
+
 #ac-header .ac-logo {
   vertical-align: middle;
   margin-right: 12px;
   width: 22px;
   text-decoration: #003f5f;
 }
+
 #ac-header .ac-logo-filler {
   height: 20px;
 }
+
 #ac-header .ac-header-logo-description {
   color: #fff;
   display: inline-block;
   font-family: "Muli", arial;
   font-weight: 300;
 }
+
 #ac-header .ac-navs {
   position: absolute;
   top: 0;
@@ -49,12 +56,15 @@ a {
   line-height: 60px;
   padding: 0 50px;
 }
+
 #ac-header .ac-navs li {
   display: inline-block;
 }
+
 #ac-header .ac-navs li a {
   color: #fff;
 }
+
 #ac-sec-navs {
   position: fixed;
   height: 64px;
@@ -70,6 +80,7 @@ a {
   -ms-user-select: none;
   user-select: none;
 }
+
 #ac-account-switcher {
   position: absolute;
   top: 0;
@@ -77,22 +88,27 @@ a {
   width: 224px;
   background: #fff;
 }
+
 #ac-no-account {
   background: #1ba71b;
 }
+
 #ac-no-account button {
   width: 100%;
   height: 64px;
   line-height: 64px;
 }
+
 #ac-no-account button:hover ~ .ac-tutorial {
   display: block;
 }
+
 #ac-no-account button .ac-icon {
   position: relative;
   top: 3px;
   left: -8px;
 }
+
 #ac-no-account .ac-tutorial {
   display: none;
   left: 20px;
