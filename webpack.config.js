@@ -6,6 +6,7 @@ var merge = require("webpack-merge");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var common = {
   context: __dirname,
@@ -84,10 +85,13 @@ var common = {
       output: {comments: false},
       sourceMap: true
     }),
+
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.DefinePlugin({
       "process.env": { NODE_ENV: JSON.stringify("production") }
     }),
+    new StyleLintPlugin({ configFile: __dirname + '/.stylelintrc'}),
+    new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
   ]
 };
 
@@ -130,11 +134,7 @@ module.exports = [
     },
     resolve: { modules: ["node_modules", __dirname + "/web/static/js/admin" ]},
     plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
-      new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
+            new CopyWebpackPlugin([{ from: "./web/static/assets"}]),
       new ExtractTextPlugin({filename: "css/[name].css", allChunks: true})
     ]
   }),
