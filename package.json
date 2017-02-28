@@ -14,9 +14,9 @@
   "scripts": {
     "test": "eslint",
     "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
-    "build": "WEBPACK_ENV=build webpack",
-    "debug": "WEBPACK_ENV=build webpack --display-error-details",
-    "deploy": "WEBPACK_ENV=production webpack"
+    "build": "webpack",
+    "debug": "webpack --display-error-details",
+    "deploy": "webpack -p"
   },
   "repository": {
     "type": "git",
