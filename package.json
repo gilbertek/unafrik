@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint",
     "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
     "build": "WEBPACK_ENV=build webpack",
     "debug": "WEBPACK_ENV=build webpack --display-error-details",
