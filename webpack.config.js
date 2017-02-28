@@ -48,13 +48,20 @@ var common = {
       // },
       {
         test: [/\.sass$/, /\.css$/, /\.scss$/],
-        loader: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            loader: 'css-loader!sass-loader'
-          }
-        )
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [ 'css-loader', 'sass-loader' ]
+        }),
       },
+      // {
+      //   test: [/\.sass$/, /\.css$/, /\.scss$/],
+      //   loader: ExtractTextPlugin.extract(
+      //     {
+      //       fallback: 'style-loader',
+      //       loader: 'css-loader!sass-loader'
+      //     }
+      //   )
+      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
