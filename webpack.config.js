@@ -6,6 +6,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var StyleLintPlugin = require('stylelint-webpack-plugin');
 
+process.traceDeprecation = true;
+
 var common = {
   context: __dirname,
   devtool: 'source-map',
@@ -102,65 +104,65 @@ var common = {
 
 module.exports = [
   // Application Style Entry Point
-  merge(common, {
-    entry: {
-      app: ['./web/static/css/app/app.scss',
-            './web/static/js/app/app.js']
-    },
-    output: {
-      path: './priv/static',
-      filename: 'js/[name].js'
-    },
-    resolve: {
-      modules: ['node_modules', __dirname + '/web/static/js/app'],
-      extensions: ['.js', '.json', '.jsx', '.css'],
-      alias: {
-        'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js'),
-        'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
-        'normalize': path.resolve(__dirname, 'node_modules/normalize.css/normalize.css'),
-      }
-    },
-    plugins: [
-      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
-      new CopyWebpackPlugin([{from: './web/static/assets'}]),
-      new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true,})
-    ]
-  }),
+  // merge(common, {
+  //   entry: {
+  //     app: ['./web/static/css/app/app.scss',
+  //           './web/static/js/app/app.js']
+  //   },
+  //   output: {
+  //     path: './priv/static',
+  //     filename: 'js/[name].js'
+  //   },
+  //   resolve: {
+  //     modules: ['node_modules', __dirname + '/web/static/js/app'],
+  //     extensions: ['.js', '.json', '.jsx', '.css'],
+  //     alias: {
+  //       'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js'),
+  //       'jQuery': path.join(__dirname, 'node_modules', 'jquery','dist', 'jquery.js'),
+  //       'normalize': path.resolve(__dirname, 'node_modules/normalize.css/normalize.css'),
+  //     }
+  //   },
+  //   plugins: [
+  //     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
+  //     new CopyWebpackPlugin([{from: './web/static/assets'}]),
+  //     new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true,})
+  //   ]
+  // }),
 
   // Admin Style Entry Point
-  merge(common, {
-    entry: {
-      admin: ['./web/static/css/admin/admin.scss',
-              './web/static/js/admin/admin.js']
-    },
-    output: {
-      path: './priv/static',
-      filename: 'js/[name].js'
-    },
-    resolve: { modules: ['node_modules', __dirname + '/web/static/js/admin' ]},
-    plugins: [
-            new CopyWebpackPlugin([{ from: './web/static/assets'}]),
-      new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true})
-    ]
-  }),
+  // merge(common, {
+  //   entry: {
+  //     admin: ['./web/static/css/admin/admin.scss',
+  //             './web/static/js/admin/admin.js']
+  //   },
+  //   output: {
+  //     path: './priv/static',
+  //     filename: 'js/[name].js'
+  //   },
+  //   resolve: { modules: ['node_modules', __dirname + '/web/static/js/admin' ]},
+  //   plugins: [
+  //           new CopyWebpackPlugin([{ from: './web/static/assets'}]),
+  //     new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true})
+  //   ]
+  // }),
 
   // Admin Style Entry Point v2
-  merge(common, {
-    entry: {
-      admin_two: ['./web/static/css/admin_two/admin.scss',
-              './web/static/js/admin_two/admin.js']
-    },
-    output: {
-      path: './priv/static',
-      filename: 'js/[name].js'
-    },
-    resolve: { modules: ['node_modules', __dirname + '/web/static/js/admin_two' ]},
-    plugins: [
-      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
-      new CopyWebpackPlugin([{ from: './web/static/assets'}]),
-      new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true})
-    ]
-  }),
+  // merge(common, {
+  //   entry: {
+  //     admin_two: ['./web/static/css/admin_two/admin.scss',
+  //             './web/static/js/admin_two/admin.js']
+  //   },
+  //   output: {
+  //     path: './priv/static',
+  //     filename: 'js/[name].js'
+  //   },
+  //   resolve: { modules: ['node_modules', __dirname + '/web/static/js/admin_two' ]},
+  //   plugins: [
+  //     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
+  //     new CopyWebpackPlugin([{ from: './web/static/assets'}]),
+  //     new ExtractTextPlugin({filename: 'css/[name].css', allChunks: true})
+  //   ]
+  // }),
 
 
   // Admin Style with semantic-ui-css Entry Point
