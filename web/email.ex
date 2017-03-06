@@ -1,6 +1,14 @@
 defmodule Unafrik.Email do
   use Bamboo.Phoenix, view: Unafrik.EmailView
 
+  def test_mail do
+    new_email
+    |> from("support@recessiv.com")
+    |> to("gilberts55@gmail.com")
+    |> subject("Welcome!!!")
+    |> html_body("<strong>Welcome</strong>")
+  end
+
   def sign_in_email(user) do
     base_email()
     |> put_header("X-CMail-GroupName", "Sign In")

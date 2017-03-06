@@ -12,6 +12,7 @@
     ]
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "eslint",
     "start": "webpack --watch-stdin --progress --color --display-error-details --display-cached",
     "build": "webpack",
