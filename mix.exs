@@ -51,12 +51,13 @@ defmodule Unafrik.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0.1"},
      {:guardian, "~> 0.14.2"},
-     {:bamboo, "~> 0.7.0"},
-     {:bamboo_smtp, "~> 1.2.1"},
+     {:bamboo, "~> 0.8.0"},
+     {:bamboo_smtp, "~> 1.3.0"},
      {:slugger, "~> 0.1.0"},
      {:ecto_enum, "~> 1.0.1"},
-     {:scrivener_ecto, "~> 1.0"},
+     {:scrivener_ecto, "~> 1.1.4"},
      {:credo, "~> 0.6.1", only: [:dev, :test]},
+     {:ex_machina, "~> 2.0", only: :test}
      # {:dialyxir, "~> 0.4.4", only: [:dev, :test], runtime: false},
     ]
   end

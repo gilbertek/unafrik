@@ -1,0 +1,64 @@
+image: docker:latest
+stages:
+    - test
+    - build
+    - package
+    - release
+    - deploy
+    - cleanup
+
+variables:
+  APP_NAME: recessiv
+  APP_VERSION: 0.0.1
+  POSTGRES_HOST: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_DB: postgres
+  POSTGRES_PASSWORD: postgres
+
+before_script:
+  - mix local.rebar --force
+  - mix local.hex --force
+  - mix deps.get
+
+test:
+  stage: test
+  service:
+    - postgres:latest
+  tags:
+    - docker
+  script: echo "Running tests..."
+    - env
+    - docker run --rm
+    - mix test
+
+
+
+build:
+  stage: build
+  script: echo "Building app..."
+
+package:
+  stage: package
+  script: echo "Packaging the app...."
+
+release:
+  stage: release
+  script: echo "Releasing app..."
+
+cleanup:
+  stage: cleanup
+  script: echo "Cleaning artifacts..."
+
+deploy_prod:
+  stage: release
+  script:
+    - echo "Deploy to production server"
+  environment:
+    name: production
+    url: https://example.com
+  when: manual
+  only:
+    - master
+
+
+
