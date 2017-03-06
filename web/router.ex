@@ -37,6 +37,9 @@ defmodule Unafrik.Router do
                                                    :delete]
 
     resources "/subscriptions", SubscriptionController, only: [:new, :create]
+
+    get "/contact_us", MessageController, :new
+    post "/contact_us", MessageController, :create
   end
 
   scope "/admin", Unafrik.Admin, as: :admin do

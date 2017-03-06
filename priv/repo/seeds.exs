@@ -53,6 +53,10 @@
 
 # https://gist.github.com/637e1a76f482620361d964784a58fa92
 
+# mix phoenix.gen.html Message messages name:string \
+# email:string company_name:string message_body:text \
+# inquiry_type:integer
+
 alias Unafrik.Repo
 alias Unafrik.{Organization, User, Account, Registration}
 

@@ -8,4 +8,12 @@ defenum RequestTypeEnum, pto: 0, remote: 1, leave: 2
 defenum RequestStatusEnum, pending: 0, declined: 1, approved: 2
 
 # , weekdays: 4 # TODO: Have to come back to that
-
+defenum(
+  InquiryTypeEnum,
+  "I need billing assistance": 0,
+  "I have questions before signing up": 1,
+  "I have a suggestion or a request": 2,
+  "I am having problem registering": 3,
+  "Press or media inquiry": 4,
+  "I have a general comment or question": 5
+)
