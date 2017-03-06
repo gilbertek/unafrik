@@ -31,7 +31,13 @@
 
   <div class="form-group">
     <%= label f, :inquiry_type, class: "control-label" %>
-    <%= number_input f, :inquiry_type, class: "form-control" %>
+    <%=# number_input f, :inquiry_type, class: "form-control" %>
+    <%= select f, :inquiry_type,
+                  inquiry_types(),
+                  required: true,
+                  class: "form-control",
+                  prompt: "Select..."
+                  %>
     <%= error_tag f, :inquiry_type %>
   </div>
 

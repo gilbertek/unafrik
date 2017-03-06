@@ -6,17 +6,21 @@ defmodule Unafrik.Message do
     field :email, :string
     field :company_name, :string
     field :message_body, :string
-    field :inquiry_type, :integer
+    field :inquiry_type, InquiryTypeEnum, default: 5
 
     timestamps()
   end
+
+  @required_fields ~w(name email inquiry_type message_body)a
+  @optional_fields ~w(company_name)a
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :email, :company_name, :message_body, :inquiry_type])
-    |> validate_required([:name, :email, :company_name, :message_body, :inquiry_type])
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
+    |> validate_format(:email, ~r/@/)
   end
 end

@@ -2,7 +2,7 @@ defmodule Unafrik.Email do
   use Bamboo.Phoenix, view: Unafrik.EmailView
 
   def test_mail do
-    new_email
+    new_email()
     |> from("support@recessiv.com")
     |> to("gilberts55@gmail.com")
     |> subject("Welcome!!!")
