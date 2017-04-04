@@ -2,7 +2,6 @@ defmodule Unafrik.MessageController do
   use Unafrik.Web, :controller
 
   alias Unafrik.Message
-  require IEx
 
   def new(conn, _params) do
     changeset = Message.changeset(%Message{})
